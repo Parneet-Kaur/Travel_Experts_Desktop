@@ -9,17 +9,17 @@ namespace TravelExpertsDb
 {
      class DataAccessLogin
     {
-        string connectionString = "Data Source=ICTVM-IVMOQ3HR1\\SQLEXPRESS;" +
-                       "Database=TravelExperts;" +
-                       "Integrated Security=True";
-
-        
        
+                      
         public bool validateCredentials(string user,string password) {
 
-            string connectionString = "Data Source=ICTVM-IVMOQ3HR1\\SQLEXPRESS;" +
-                                      "Database=TravelExperts;" +
-                                      "Integrated Security=True";
+            //string connectionString = "Data Source=ICTVM-IVMOQ3HR1\\SQLEXPRESS;" +
+            //                          "Database=TravelExperts;" +
+            //                          "Integrated Security=True";
+
+
+            string connectionString = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\TravelExperts.mdf;Integrated Security = True; Connect Timeout = 30";
+
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
 

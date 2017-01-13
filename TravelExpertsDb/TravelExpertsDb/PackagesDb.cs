@@ -10,7 +10,7 @@ namespace TravelExpertsDb
 {
     public static class PackagesDb
     {
-        public static Packages getPackage(int packageID) {
+        public static void getPackage(int packageID) {
 
             SqlConnection con=DataAccess.getConnection();
             string query = "SELECT * FROM  packages where "+
@@ -19,11 +19,12 @@ namespace TravelExpertsDb
             com.Parameters.Add("@packageID", SqlDbType.Int).Value = packageID;
             SqlDataReader reader = com.ExecuteReader();
 
-            while (reader.Read()) {
-                Packages package = new Packages();
-                package.PkgName = reader[].ToString();
-                package.PkgStartDate=
-            }
+            //while (reader.Read())
+            //{
+            //    Packages package = new Packages();
+            //    package.PkgName = reader[].ToString();
+            //    package.PkgStartDate =
+            //}
 
 
         }
