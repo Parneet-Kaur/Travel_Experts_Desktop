@@ -11,14 +11,48 @@ namespace TravelExpertsDb
 {
     public static class ProductDB
     {
+
+        //adding a new product to the database
+        public static bool AddNewProduct(string productName)
+        {
+            SqlConnection connection = DataAccess.getConnection();
+
+            string insertStatement = "Insert into Products Values (@ProdName)";
+
+            SqlCommand insertCommand = new SqlCommand(insertStatement, connection);
+
+            insertCommand.Parameters.AddWithValue("@ProdName", productName);
+
+            try
+            {
+                connection.Open();
+                insertCommand.ExecuteNonQuery();
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.GetType() + ex.Message);
+                return false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+        }
+
+
+
+        //Get all products from the database
         public static List<Product> GetProducts()
         {
-            
+
 
             SqlConnection connection = DataAccess.getConnection();
 
             string selectStatement = "SELECT ProductId, ProdName " +
-                                     "FROM Products";
+                                     "FROM Products ORDER BY ProdName Asc";
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
 
             connection.Open();
@@ -26,11 +60,11 @@ namespace TravelExpertsDb
             SqlDataReader reader = selectCommand.ExecuteReader();
 
             var products = new List<Product>();
-            while ( reader.Read() )
+            while (reader.Read())
             {
                 //for each record fill out a product
                 var product = new Product();
-                product.ProductId =  Convert.ToInt32(reader["ProductId"]);
+                product.ProductId = Convert.ToInt32(reader["ProductId"]);
                 product.ProdName = reader["ProdName"].ToString();
                 products.Add(product);
             }
@@ -39,7 +73,9 @@ namespace TravelExpertsDb
             return products;
         }
 
-        public static List<ProductSupplier> GetProductSuppliers( Product product )
+
+        //Grab the Product's current supplier 
+        public static List<ProductSupplier> GetProductSuppliers(Product product)
         {
             SqlConnection connection = DataAccess.getConnection();
 
@@ -72,10 +108,12 @@ namespace TravelExpertsDb
             return prodSuppliers;
         }
 
+
+        //getting the suppliers that are not in the current product
         public static List<ProductSupplier> GetSuppliersNotInProduct(Product product)
         {
             SqlConnection connection = DataAccess.getConnection();
-            
+
             List<ProductSupplier> remainingProductSuppliers = product.GetSuppliers();
 
             var stringList = new List<string>();
@@ -91,8 +129,8 @@ namespace TravelExpertsDb
                                      WHERE s.SupplierId NOT IN ({string.Join(", ", stringList)})
                                      ORDER BY SupName ASC";
 
-            SqlCommand selectCommand = new SqlCommand(selectStatement,connection);
-            
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+
 
 
 
@@ -131,7 +169,7 @@ namespace TravelExpertsDb
             {
                 connection.Open();
                 deleteCommand.ExecuteNonQuery();
-               
+
             }
             catch (SqlException)
             {
@@ -143,6 +181,8 @@ namespace TravelExpertsDb
             }
         }
 
+
+        //Add the supplier to the product
         public static void AddSuppliertoProduct(Product product, ProductSupplier supplier)
         {
             SqlConnection connection = DataAccess.getConnection();
@@ -171,5 +211,36 @@ namespace TravelExpertsDb
 
         }
 
+        //updating the product name in the database
+        public static bool UpdateProductName(Product oldProduct, string newProductName)
+        {
+            SqlConnection connection = DataAccess.getConnection();
+
+            string updateStatement = @"UPDATE Products SET ProdName = @newProdName
+                                         WHERE ProductId = @ProductId AND ProdName = @oldProdName";
+
+            SqlCommand updateCommand = new SqlCommand(updateStatement, connection);
+            updateCommand.Parameters.AddWithValue("@newProdName", newProductName);
+            updateCommand.Parameters.AddWithValue("@ProductId", oldProduct.ProductId);
+            updateCommand.Parameters.AddWithValue("@oldProdName", oldProduct.ProdName);
+
+            try
+            {
+                connection.Open();
+                updateCommand.ExecuteNonQuery();
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.GetType() + ex.Message);
+                return false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+        }
     }
 }
