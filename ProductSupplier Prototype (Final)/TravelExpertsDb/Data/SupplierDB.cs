@@ -9,11 +9,11 @@ using System.Windows.Forms;
 
 namespace TravelExpertsDb
 {
-   public static class SupplierDB
+    public static class SupplierDB
     {
         //Callias Nguyen
         public static bool AddNewSupplier(string newSupplier)//method to add new supplier into the database
-            //Returns false if it does not work
+                                                             //Returns false if it does not work
         {
             int currentHighestSupplierId = 0; //set the current supplierid to 0
 
@@ -22,11 +22,11 @@ namespace TravelExpertsDb
             string selectMaxStatement = "Select Max(SupplierId) from Suppliers";
 
             SqlCommand maxsupplieridCommand = new SqlCommand(selectMaxStatement, connection);
-            
+
             try
             {
                 connection.Open();
-                 currentHighestSupplierId = Convert.ToInt32(maxsupplieridCommand.ExecuteScalar()); //Grabbing the highest supplier id from the table
+                currentHighestSupplierId = Convert.ToInt32(maxsupplieridCommand.ExecuteScalar()); //Grabbing the highest supplier id from the table
                 //because supplierid is not incremented
             }
             catch (SqlException ex)
@@ -39,7 +39,7 @@ namespace TravelExpertsDb
                 connection.Close();
             }
 
-            int newSupplierId = currentHighestSupplierId +1; //creating a newSupplierId
+            int newSupplierId = currentHighestSupplierId + 1; //creating a newSupplierId
 
 
             //Now we are inserting the supplier into the database
@@ -68,8 +68,29 @@ namespace TravelExpertsDb
             {
                 connection.Close();
             }
-         
+
         }
+
+        /// SEPARATING METHODS
+        /// 
+        ///
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        ///
+        ///
+        ///
+        /// SEPARATING METHODS
+
 
 
         // Grab all suppliers in the Database
@@ -84,10 +105,10 @@ namespace TravelExpertsDb
             List<ProductSupplier> suppliers = new List<ProductSupplier>();
             try
             {
-                
+
                 connection.Open();
                 SqlDataReader reader = selectCommand.ExecuteReader();
-                while(reader.Read())
+                while (reader.Read())
                 {
                     ProductSupplier productsupplier = new ProductSupplier();
                     productsupplier.SupplierId = Convert.ToInt32(reader["SupplierId"]);
@@ -95,7 +116,7 @@ namespace TravelExpertsDb
                     suppliers.Add(productsupplier);
                 }
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 MessageBox.Show(ex.GetType() + ex.Message);
             }
@@ -111,6 +132,25 @@ namespace TravelExpertsDb
             return suppliers;
         }
 
+        /// SEPARATING METHODS
+        /// 
+        ///
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        ///
+        ///
+        ///
+        /// SEPARATING METHODS
 
 
         public static bool UpdateSupplier(ProductSupplier oldSupplier, string newSupplierName)
@@ -141,7 +181,66 @@ namespace TravelExpertsDb
                 connection.Close();
             }
 
+        }
 
+        /// SEPARATING METHODS
+        /// 
+        ///
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        /// 
+        ///
+        ///
+        ///
+        /// SEPARATING METHODS
+
+        public static List<string> AttachedPackagesFromSuppliers(ProductSupplier currentSupplier)
+        {
+            SqlConnection connection = DataAccess.getConnection();
+
+            string selectStatement = @"SELECT PkgName From Packages p
+                                        INNER JOIN Packages_Products_Suppliers pps
+                                        ON pps.PackageId = p.PackageId
+                                        WHERE ProductSupplierId = @ProductSupplierId ";
+
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@ProductSupplierId", currentSupplier.ProductSupplierId);
+        
+
+            List<string> attachedPackages = new List<string>();
+
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = selectCommand.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string attachedPackage = reader["PkgName"].ToString();
+                    attachedPackages.Add(attachedPackage);
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.GetType() + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return attachedPackages;
         }
     }
 }
+

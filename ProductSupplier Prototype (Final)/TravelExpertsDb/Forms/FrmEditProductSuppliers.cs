@@ -33,6 +33,7 @@ namespace TravelExpertsDb.Forms
             //Display the product for the attached suppliers
             lblProductSuppliers.Text = "Current Suppliers for " + selectedProduct.ProdName;
 
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -59,7 +60,7 @@ namespace TravelExpertsDb.Forms
         {
             //grabbing the classes to add
             Product product = (Product)lbProducts.SelectedItem;
-            ProductSupplier productsupplier = (ProductSupplier)lbCurrentSuppliers.SelectedValue;
+            ProductSupplier productsupplier = (ProductSupplier)lbAllSuppliers.SelectedValue;
 
 
             //Add Supplier to product
@@ -68,6 +69,23 @@ namespace TravelExpertsDb.Forms
             //Refresh the Dataset
             lbCurrentSuppliers.DataSource = ProductDB.GetProductSuppliers(product);
             lbAllSuppliers.DataSource = ProductDB.GetSuppliersNotInProduct(product);
+        }
+
+        private void btnAccept_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void lbCurrentSuppliers_SelectedValueChanged(object sender, EventArgs e)
+        {
+            //Display the packages that are being used for the current suppliers
+            ProductSupplier currentSupplier = (ProductSupplier)lbCurrentSuppliers.SelectedItem;
+            List<string> currentPackages = SupplierDB.AttachedPackagesFromSuppliers(currentSupplier);
+
+            if (currentPackages != null)
+            {
+                lbPackages.DataSource = currentPackages;
+            }
         }
     }
 }

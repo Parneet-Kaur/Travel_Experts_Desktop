@@ -11,8 +11,13 @@ using System.Windows.Forms;
 
 namespace TravelExpertsDb.Forms
 {
+  
+
     public partial class FrmProductSupplierHomecs : MaterialForm
     {
+
+        public ProductSupplier productsupplier; //initialize a productsupplier so we can put the supplier name 
+        //into the selected value
         public FrmProductSupplierHomecs()
         {
             InitializeComponent();
@@ -24,6 +29,8 @@ namespace TravelExpertsDb.Forms
             DialogResult result = newSupplierForm.ShowDialog();
             if(result == DialogResult.OK)
             {
+                //Refresh the datasource
+                cboProduct.DataSource = ProductDB.GetProducts();
 
             }
         }
@@ -44,11 +51,13 @@ namespace TravelExpertsDb.Forms
 
         private void btnNewProduct_Click(object sender, EventArgs e)
         {
-            FrmNewProduct newProductForm = new FrmNewProduct();
+            FrmNewProduct newProductForm = new FrmNewProduct();         
             DialogResult result = newProductForm.ShowDialog();
             if(result == DialogResult.OK)
             {
+               
                 cboProduct.DataSource = ProductDB.GetProducts();
+        
             }
 
         }
@@ -60,13 +69,20 @@ namespace TravelExpertsDb.Forms
             DialogResult result = newProductSuppliers.ShowDialog();
             if (result == DialogResult.OK)
             {
+
+                Product selectedProduct = (Product)cboProduct.SelectedValue;
+                lbCurrentSuppliers.DataSource = ProductDB.GetProductSuppliers(selectedProduct);
                 cboProduct.DataSource = ProductDB.GetProducts();
+
+               
             }
         }
 
         private void btnEditSupplier_Click(object sender, EventArgs e)
         {
             FrmEditSupplier editSupplier = new FrmEditSupplier();
+            editSupplier.selectedProductSupplier = (ProductSupplier)lbCurrentSuppliers.SelectedItem; //grabbing the Productsupplier entity so that the 
+            //form can focus on the selected supplier
             DialogResult result = editSupplier.ShowDialog();
             if (result == DialogResult.OK)
             {
@@ -76,7 +92,9 @@ namespace TravelExpertsDb.Forms
 
         private void btnEditProduct_Click(object sender, EventArgs e)
         {
+            
             FrmEditProduct editProduct = new FrmEditProduct();
+            editProduct.productIndex = (int) cboProduct.SelectedIndex ;
             DialogResult result = editProduct.ShowDialog();
             if(result == DialogResult.OK)
             {

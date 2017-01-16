@@ -80,7 +80,8 @@ namespace TravelExpertsDb
             SqlConnection connection = DataAccess.getConnection();
 
             string selectStatement = "SELECT ps.SupplierId, SupName, ProductSupplierId FROM Products_Suppliers ps " +
-                                     "INNER JOIN Suppliers s ON s.SupplierId = ps.SupplierId " +
+                                     "INNER JOIN Suppliers s " +
+                                     "ON s.SupplierId = ps.SupplierId " +
                                      "WHERE ProductId = @ProductId " +
                                      "ORDER BY SupName ASC";
 
@@ -101,6 +102,7 @@ namespace TravelExpertsDb
                 prodSupplier.SupName = reader["SupName"].ToString();
                 prodSupplier.SupplierId = Convert.ToInt32(reader["SupplierId"]);
                 prodSuppliers.Add(prodSupplier);
+
             }
 
             connection.Close();
@@ -123,7 +125,7 @@ namespace TravelExpertsDb
             }
 
             //need the $ sign to join a betweens....
-            string selectStatement = $@"SELECT DISTINCT s.SupplierId, SupName, ProductSupplierId 
+            string selectStatement = $@"SELECT DISTINCT s.SupplierId, SupName
                                      FROM Suppliers s 
                                      INNER JOIN Products_Suppliers ps ON ps.SupplierId = s.SupplierId
                                      WHERE s.SupplierId NOT IN ({string.Join(", ", stringList)})
@@ -141,8 +143,8 @@ namespace TravelExpertsDb
             List<ProductSupplier> productSuppliers = new List<ProductSupplier>();
             while (reader.Read())
             {
-                var productSupplier = new ProductSupplier();
-                productSupplier.ProductSupplierId = Convert.ToInt32(reader["ProductSupplierId"]);
+                ProductSupplier productSupplier = new ProductSupplier();
+                //productSupplier.ProductSupplierId = Convert.ToInt32(reader["ProductSupplierId"]);
                 productSupplier.SupName = reader["SupName"].ToString();
                 productSupplier.SupplierId = Convert.ToInt32(reader["SupplierId"]);
                 productSuppliers.Add(productSupplier);
@@ -173,7 +175,7 @@ namespace TravelExpertsDb
             }
             catch (SqlException)
             {
-                MessageBox.Show("Cannot Delete Supplier from Product as it is currently in a package.", "Error");
+                MessageBox.Show("Cannot delete supplier " + supplier.SupName + " from product " + product.ProdName  + " as it is currently supplied in a package(s).", "Deletion Error");
             }
             finally
             {

@@ -13,6 +13,8 @@ namespace TravelExpertsDb.Forms
 {
     public partial class FrmEditProduct : MaterialForm
     {
+        public int productIndex = 0; //grabbing the product index to display on the page 
+
         public FrmEditProduct()
         {
             InitializeComponent();
@@ -26,7 +28,15 @@ namespace TravelExpertsDb.Forms
         private void FrmEditProduct_Load(object sender, EventArgs e)
         {
             //Attach a data to the products listbox
-            lbProduct.DataSource = ProductDB.GetProducts();
+            lbProduct.DataSource = ProductDB.GetProducts();//Returns a list of products
+            lbProduct.DisplayMember = "ProdName";
+            lbProduct.ValueMember = "ProductId";
+
+            
+            lbProduct.SelectedIndex = productIndex; //passing on the index from the landing page.. if there is an error on the main page then the 
+            //value default is air.
+
+            txtNewProduct.Focus();//MATERIAL SKIN DOESNT LET YOU FOCUS
         }
 
         private void lbProduct_SelectedValueChanged(object sender, EventArgs e)

@@ -38,6 +38,8 @@
             this.btnAdd = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnAccept = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnCancel = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.lbPackages = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // lblProducts
@@ -69,6 +71,7 @@
             this.lbCurrentSuppliers.Name = "lbCurrentSuppliers";
             this.lbCurrentSuppliers.Size = new System.Drawing.Size(211, 160);
             this.lbCurrentSuppliers.TabIndex = 2;
+            this.lbCurrentSuppliers.SelectedValueChanged += new System.EventHandler(this.lbCurrentSuppliers_SelectedValueChanged);
             // 
             // lbAllSuppliers
             // 
@@ -141,6 +144,7 @@
             this.btnAccept.TabIndex = 8;
             this.btnAccept.Text = "Accept";
             this.btnAccept.UseVisualStyleBackColor = true;
+            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
             // btnCancel
             // 
@@ -155,11 +159,34 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // materialLabel1
+            // 
+            this.materialLabel1.AutoSize = true;
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel1.ForeColor = System.Drawing.Color.Red;
+            this.materialLabel1.Location = new System.Drawing.Point(237, 287);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(215, 19);
+            this.materialLabel1.TabIndex = 10;
+            this.materialLabel1.Text = "Packages For Current Supplier:";
+            // 
+            // lbPackages
+            // 
+            this.lbPackages.FormattingEnabled = true;
+            this.lbPackages.Location = new System.Drawing.Point(241, 308);
+            this.lbPackages.Name = "lbPackages";
+            this.lbPackages.Size = new System.Drawing.Size(210, 43);
+            this.lbPackages.TabIndex = 11;
+            // 
             // FrmEditProductSuppliers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(792, 367);
+            this.Controls.Add(this.lbPackages);
+            this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAccept);
             this.Controls.Add(this.btnAdd);
@@ -170,7 +197,10 @@
             this.Controls.Add(this.lbCurrentSuppliers);
             this.Controls.Add(this.lbProducts);
             this.Controls.Add(this.lblProducts);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmEditProductSuppliers";
+            this.Sizable = false;
             this.Text = "Edit Product\'s Suppliers";
             this.Load += new System.EventHandler(this.FrmEditProductSuppliers_Load);
             this.ResumeLayout(false);
@@ -190,5 +220,7 @@
         private MaterialSkin.Controls.MaterialRaisedButton btnAdd;
         private MaterialSkin.Controls.MaterialRaisedButton btnAccept;
         private MaterialSkin.Controls.MaterialRaisedButton btnCancel;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private System.Windows.Forms.ListBox lbPackages;
     }
 }

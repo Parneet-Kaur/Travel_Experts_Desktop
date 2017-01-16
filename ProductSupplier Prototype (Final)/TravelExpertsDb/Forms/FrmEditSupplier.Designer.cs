@@ -162,7 +162,10 @@
             this.Controls.Add(this.lblCurrentSupplierName);
             this.Controls.Add(this.lbSuppliers);
             this.Controls.Add(this.lblEditSupplier);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmEditSupplier";
+            this.Sizable = false;
             this.Text = "Edit Supplier";
             this.Load += new System.EventHandler(this.FrmEditSupplier_Load);
             this.ResumeLayout(false);

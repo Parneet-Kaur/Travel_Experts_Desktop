@@ -162,7 +162,10 @@
             this.Controls.Add(this.lblCurrentSuppliers);
             this.Controls.Add(this.lblProduct);
             this.Controls.Add(this.cboProduct);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmProductSupplierHomecs";
+            this.Sizable = false;
             this.Text = "Products and Suppliers";
             this.Load += new System.EventHandler(this.FrmProductSupplierHomecs_Load);
             this.ResumeLayout(false);

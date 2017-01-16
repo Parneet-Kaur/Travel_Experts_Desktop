@@ -97,7 +97,10 @@
             this.Controls.Add(this.lblNewProduct);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmNewProduct";
+            this.Sizable = false;
             this.Text = "New Product";
             this.ResumeLayout(false);
             this.PerformLayout();

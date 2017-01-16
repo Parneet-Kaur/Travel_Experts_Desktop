@@ -18,6 +18,9 @@ namespace TravelExpertsDb.Forms
             InitializeComponent();
         }
 
+
+        //Cannot actually focus on the text.... for material skin so i didn't bother implementing a focus here
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
@@ -35,11 +38,7 @@ namespace TravelExpertsDb.Forms
                     MessageBox.Show(newSupplierName + " has been successfully been added to the database", "Success");
                     DialogResult = DialogResult.OK;
                 }
-                else
-                {
-                    MessageBox.Show("Supplier " + newSupplierName + " already exists!", "Error");
-                    DialogResult = DialogResult.Retry;
-                }
+             
             }
         }
     }

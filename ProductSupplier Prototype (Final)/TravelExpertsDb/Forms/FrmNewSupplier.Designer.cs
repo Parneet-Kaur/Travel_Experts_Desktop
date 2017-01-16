@@ -98,6 +98,8 @@
             this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmNewSupplier";
             this.Text = "New Supplier";
             this.ResumeLayout(false);

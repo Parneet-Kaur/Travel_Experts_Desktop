@@ -17,7 +17,7 @@ namespace TravelExpertsDb.Forms
         {
             InitializeComponent();
         }
-
+        //Cannot actually focus on the text.... for material skin so i didn't bother implementing a focus here
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
