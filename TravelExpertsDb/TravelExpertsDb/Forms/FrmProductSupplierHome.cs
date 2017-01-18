@@ -30,7 +30,7 @@ namespace TravelExpertsDb.Forms
             if(result == DialogResult.OK)
             {
                 //Refresh the datasource
-                cboProduct.DataSource = ProductDB.GetProducts();
+                lballSuppliers.DataSource = SupplierDB.GetAllSuppliers();
 
             }
         }
@@ -39,15 +39,11 @@ namespace TravelExpertsDb.Forms
         {
             //Once the form loads we want to load the products that we have
             cboProduct.DataSource = ProductDB.GetProducts();
+            lballSuppliers.DataSource = SupplierDB.GetAllSuppliers();
 
         }
 
-        private void cboProduct_SelectedValueChanged(object sender, EventArgs e)
-        {
-            Product selectedProduct = (Product)cboProduct.SelectedValue;
-            lbCurrentSuppliers.DataSource = ProductDB.GetProductSuppliers(selectedProduct);
 
-        }
 
         private void btnNewProduct_Click(object sender, EventArgs e)
         {
@@ -71,7 +67,7 @@ namespace TravelExpertsDb.Forms
             {
 
                 Product selectedProduct = (Product)cboProduct.SelectedValue;
-                lbCurrentSuppliers.DataSource = ProductDB.GetProductSuppliers(selectedProduct);
+                lballSuppliers.DataSource = ProductDB.GetProductSuppliers(selectedProduct);
                 cboProduct.DataSource = ProductDB.GetProducts();
 
                
@@ -81,12 +77,13 @@ namespace TravelExpertsDb.Forms
         private void btnEditSupplier_Click(object sender, EventArgs e)
         {
             FrmEditSupplier editSupplier = new FrmEditSupplier();
-            editSupplier.selectedProductSupplier = (ProductSupplier)lbCurrentSuppliers.SelectedItem; //grabbing the Productsupplier entity so that the 
+            editSupplier.selectedProductSupplier = (ProductSupplier)lballSuppliers.SelectedItem; //grabbing the Productsupplier entity so that the 
             //form can focus on the selected supplier
             DialogResult result = editSupplier.ShowDialog();
             if (result == DialogResult.OK)
             {
-                cboProduct.DataSource = ProductDB.GetProducts();
+               //update supplier
+                lballSuppliers.DataSource = SupplierDB.GetAllSuppliers();
             }
         }
 
@@ -100,6 +97,11 @@ namespace TravelExpertsDb.Forms
             {
                 cboProduct.DataSource = ProductDB.GetProducts();
             }
+        }
+
+        private void FrmProductSupplierHomecs_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult = DialogResult.OK;
         }
     }
 }

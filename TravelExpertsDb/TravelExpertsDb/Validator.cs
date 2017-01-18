@@ -9,11 +9,11 @@ using System.Windows.Forms;
 
 namespace TravelExpertsDb
 {
-    public class Validator
+    public static class Validator
     {
         /*************Author: Parneet Dec2016****/
 
-        public  bool isEmpty(TextBox tb) {
+        public static bool isEmpty(TextBox tb) {
 
             if (tb.Text=="") {
                 return true;
@@ -22,7 +22,7 @@ namespace TravelExpertsDb
                 return false;
             }
         }
-        public bool username(TextBox tb)
+        public static bool userName(TextBox tb)
         {
             var regex = "^[0-9]+$";//data can only have numbers in it. Validates AgentID from agents table
             var match = Regex.Match(tb.Text, regex, RegexOptions.IgnoreCase);
@@ -36,7 +36,7 @@ namespace TravelExpertsDb
             }
         }
 
-        public  bool password(TextBox tb)
+        public static bool Password(TextBox tb)
         {
             //^ ([2 - 9]\\d{ 2})\\d{ 3}
             //-\\d{ 4}$

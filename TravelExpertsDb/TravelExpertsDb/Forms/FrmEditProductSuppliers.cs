@@ -71,10 +71,6 @@ namespace TravelExpertsDb.Forms
             lbAllSuppliers.DataSource = ProductDB.GetSuppliersNotInProduct(product);
         }
 
-        private void btnAccept_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
 
         private void lbCurrentSuppliers_SelectedValueChanged(object sender, EventArgs e)
         {

@@ -17,7 +17,7 @@ namespace TravelExpertsDb
         {
             SqlConnection connection = DataAccess.getConnection();
 
-            string insertStatement = "Insert into Products Values (@ProdName)";
+            string insertStatement = "Insert into Products Values (@ProdName) ";
 
             SqlCommand insertCommand = new SqlCommand(insertStatement, connection);
 
@@ -118,39 +118,65 @@ namespace TravelExpertsDb
 
             List<ProductSupplier> remainingProductSuppliers = product.GetSuppliers();
 
-            var stringList = new List<string>();
-            foreach (ProductSupplier remainProductSupplier in remainingProductSuppliers)
-            {
-                stringList.Add(remainProductSupplier.SupplierIdToString());
-            }
+            /////////////////FIX THIS ISSUES CAUSING PROBLEMS/////////////////////////////////////////////////////////////////////////
+
+            //var stringList = new List<string>();
+            //foreach (ProductSupplier remainProductSupplier in remainingProductSuppliers)
+            //{
+            //    stringList.Add(remainProductSupplier.SupplierIdToString());
+            //}
 
             //need the $ sign to join a betweens....
-            string selectStatement = $@"SELECT DISTINCT s.SupplierId, SupName
-                                     FROM Suppliers s 
-                                     INNER JOIN Products_Suppliers ps ON ps.SupplierId = s.SupplierId
-                                     WHERE s.SupplierId NOT IN ({string.Join(", ", stringList)})
-                                     ORDER BY SupName ASC";
 
+
+            //string selectStatement = $@"SELECT DISTINCT s.SupplierId, SupName
+            //                         FROM Suppliers s 
+            //                         INNER JOIN Products_Suppliers ps ON ps.SupplierId = s.SupplierId
+            //                         WHERE s.SupplierId NOT IN ({string.Join(", ", stringList)})
+            //                         ORDER BY SupName ASC";
+
+            //NEED TO FIX THIS SELECT STATEMENT
+            //
+            //
+            string selectStatement = @"SELECT distinct s.SupplierId, SupName FROM Suppliers s
+                                              WHERE s.supplierId NOT IN(select SupplierId from Products_Suppliers
+                                                 WHERE ProductId = @ProductId)
+                                              ORDER by SupName asc";
+            //
+            //
+            //
+            //
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@ProductId", product.ProductId);
 
-
-
-
-            connection.Open();
-
-            SqlDataReader reader = selectCommand.ExecuteReader();
 
             List<ProductSupplier> productSuppliers = new List<ProductSupplier>();
-            while (reader.Read())
-            {
-                ProductSupplier productSupplier = new ProductSupplier();
-                //productSupplier.ProductSupplierId = Convert.ToInt32(reader["ProductSupplierId"]);
-                productSupplier.SupName = reader["SupName"].ToString();
-                productSupplier.SupplierId = Convert.ToInt32(reader["SupplierId"]);
-                productSuppliers.Add(productSupplier);
-            }
 
-            connection.Close();
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = selectCommand.ExecuteReader();
+
+                
+                while (reader.Read())
+                {
+                    ProductSupplier productSupplier = new ProductSupplier();
+                    //productSupplier.ProductSupplierId = Convert.ToInt32(reader["ProductSupplierId"]);
+                    productSupplier.SupName = reader["SupName"].ToString();
+                    productSupplier.SupplierId = Convert.ToInt32(reader["SupplierId"]);
+                    productSuppliers.Add(productSupplier);
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.GetType() + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+       
             return productSuppliers;
         }
 

@@ -29,17 +29,45 @@ namespace TravelExpertsDb.Forms
             {
                 string newProduct = txtNewProduct.Text;
 
-                if (ProductDB.AddNewProduct(newProduct))
+                List<Product> allProducts = ProductDB.GetProducts();
+
+                if(ConfirmDuplicateProduct(newProduct, allProducts))
                 {
+                    ProductDB.AddNewProduct(newProduct); //enter into the database
                     MessageBox.Show(newProduct + " has been successfully added to the database.", "Success");
                     DialogResult = DialogResult.OK;
                 }
-                else {
+                else
+                {
                     MessageBox.Show(newProduct + " already exists in the database!", "Error");
-                    DialogResult = DialogResult.Retry;
 
                 }
+
+
+                }//Validator is present
+
+            }//button ok click
+
+
+
+        //Confirming if the product is in the database or not
+        private static bool ConfirmDuplicateProduct(string newProduct, List<Product> allProducts)
+        {
+
+            foreach (Product product in allProducts)// You can change to regular expression to grab all the instances of the product
+            {
+                if (product.ProdName == newProduct)
+                {
+                    
+                    return false;
+                }
+
             }
+            return true;
         }
-    }
-}
+
+        }//FormProduct
+    }//NameSpace
+
+
+

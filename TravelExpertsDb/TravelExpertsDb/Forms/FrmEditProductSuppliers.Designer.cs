@@ -36,7 +36,6 @@
             this.lblAllSuppliers = new MaterialSkin.Controls.MaterialLabel();
             this.btnRemove = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnAdd = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.btnAccept = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnCancel = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.lbPackages = new System.Windows.Forms.ListBox();
@@ -133,29 +132,16 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // btnAccept
-            // 
-            this.btnAccept.Depth = 0;
-            this.btnAccept.Location = new System.Drawing.Point(493, 308);
-            this.btnAccept.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Primary = true;
-            this.btnAccept.Size = new System.Drawing.Size(129, 26);
-            this.btnAccept.TabIndex = 8;
-            this.btnAccept.Text = "Accept";
-            this.btnAccept.UseVisualStyleBackColor = true;
-            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
-            // 
             // btnCancel
             // 
             this.btnCancel.Depth = 0;
-            this.btnCancel.Location = new System.Drawing.Point(641, 308);
+            this.btnCancel.Location = new System.Drawing.Point(641, 325);
             this.btnCancel.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Primary = true;
             this.btnCancel.Size = new System.Drawing.Size(129, 26);
             this.btnCancel.TabIndex = 9;
-            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Text = "Exit";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -164,7 +150,7 @@
             this.materialLabel1.AutoSize = true;
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel1.ForeColor = System.Drawing.Color.Red;
+            this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialLabel1.Location = new System.Drawing.Point(237, 287);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
@@ -188,7 +174,6 @@
             this.Controls.Add(this.lbPackages);
             this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnAccept);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.lblAllSuppliers);
@@ -218,7 +203,6 @@
         private MaterialSkin.Controls.MaterialLabel lblAllSuppliers;
         private MaterialSkin.Controls.MaterialRaisedButton btnRemove;
         private MaterialSkin.Controls.MaterialRaisedButton btnAdd;
-        private MaterialSkin.Controls.MaterialRaisedButton btnAccept;
         private MaterialSkin.Controls.MaterialRaisedButton btnCancel;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private System.Windows.Forms.ListBox lbPackages;

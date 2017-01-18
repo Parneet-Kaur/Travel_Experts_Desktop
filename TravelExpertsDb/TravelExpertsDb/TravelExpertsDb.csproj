@@ -67,6 +67,14 @@
   <ItemGroup>
     <Compile Include="DataAccess.cs" />
     <Compile Include="DataAccessLogin.cs" />
+    <Compile Include="Data\PackageDB.cs" />
+    <Compile Include="Entity\Package.cs" />
+    <Compile Include="Forms\FrmAddPackage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmAddPackage.Designer.cs">
+      <DependentUpon>FrmAddPackage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmEditProduct.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +92,12 @@
     </Compile>
     <Compile Include="Forms\FrmEditSupplier.Designer.cs">
       <DependentUpon>FrmEditSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmLandingPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmLandingPage.Designer.cs">
+      <DependentUpon>FrmLandingPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmNewProduct.cs">
       <SubType>Form</SubType>
@@ -118,6 +132,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\SupplierDB.cs" />
     <Compile Include="Validator.cs" />
+    <EmbeddedResource Include="Forms\FrmAddPackage.resx">
+      <DependentUpon>FrmAddPackage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmEditProduct.resx">
       <DependentUpon>FrmEditProduct.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmEditSupplier.resx">
       <DependentUpon>FrmEditSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmLandingPage.resx">
+      <DependentUpon>FrmLandingPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmNewProduct.resx">
       <DependentUpon>FrmNewProduct.cs</DependentUpon>

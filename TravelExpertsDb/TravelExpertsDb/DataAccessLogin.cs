@@ -18,16 +18,18 @@ namespace TravelExpertsDb
             //                          "Integrated Security=True";
 
 
-            string connectionString = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\TravelExperts.mdf;Integrated Security = True; Connect Timeout = 30";
+            //string connectionString = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\TravelExperts.mdf;Integrated Security = True; Connect Timeout = 30";
 
-            SqlConnection connection = new SqlConnection(connectionString);
+            //SqlConnection connection = new SqlConnection(connectionString);
+
+            SqlConnection connection = DataAccess.getConnection();
             connection.Open();
 
 
             SqlCommand com = new SqlCommand("Select AgtBusPhone from agents where agentid="+user, connection);
             SqlDataReader r = com.ExecuteReader();
             bool result = r.Read();//bug fix; doesn't work without this
-            string pass = r[0].ToString();//for testing
+            string pass = r["AgtBusPhone"].ToString();//for testing
             
             if (r[0].ToString() != password)
             {

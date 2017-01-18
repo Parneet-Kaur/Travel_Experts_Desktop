@@ -31,7 +31,7 @@
             this.cboProduct = new System.Windows.Forms.ComboBox();
             this.lblProduct = new MaterialSkin.Controls.MaterialLabel();
             this.lblCurrentSuppliers = new MaterialSkin.Controls.MaterialLabel();
-            this.lbCurrentSuppliers = new System.Windows.Forms.ListBox();
+            this.lballSuppliers = new System.Windows.Forms.ListBox();
             this.btnNewSupplier = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnNewProduct = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnEditProductSupplier = new MaterialSkin.Controls.MaterialRaisedButton();
@@ -47,7 +47,6 @@
             this.cboProduct.Name = "cboProduct";
             this.cboProduct.Size = new System.Drawing.Size(154, 21);
             this.cboProduct.TabIndex = 0;
-            this.cboProduct.SelectedValueChanged += new System.EventHandler(this.cboProduct_SelectedValueChanged);
             // 
             // lblProduct
             // 
@@ -71,17 +70,17 @@
             this.lblCurrentSuppliers.Location = new System.Drawing.Point(213, 74);
             this.lblCurrentSuppliers.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblCurrentSuppliers.Name = "lblCurrentSuppliers";
-            this.lblCurrentSuppliers.Size = new System.Drawing.Size(128, 19);
+            this.lblCurrentSuppliers.Size = new System.Drawing.Size(135, 19);
             this.lblCurrentSuppliers.TabIndex = 2;
-            this.lblCurrentSuppliers.Text = "Current Suppliers:";
+            this.lblCurrentSuppliers.Text = "Choose a Supplier:";
             // 
-            // lbCurrentSuppliers
+            // lballSuppliers
             // 
-            this.lbCurrentSuppliers.FormattingEnabled = true;
-            this.lbCurrentSuppliers.Location = new System.Drawing.Point(217, 96);
-            this.lbCurrentSuppliers.Name = "lbCurrentSuppliers";
-            this.lbCurrentSuppliers.Size = new System.Drawing.Size(244, 173);
-            this.lbCurrentSuppliers.TabIndex = 3;
+            this.lballSuppliers.FormattingEnabled = true;
+            this.lballSuppliers.Location = new System.Drawing.Point(217, 96);
+            this.lballSuppliers.Name = "lballSuppliers";
+            this.lballSuppliers.Size = new System.Drawing.Size(244, 173);
+            this.lballSuppliers.TabIndex = 3;
             // 
             // btnNewSupplier
             // 
@@ -112,7 +111,7 @@
             // btnEditProductSupplier
             // 
             this.btnEditProductSupplier.Depth = 0;
-            this.btnEditProductSupplier.Location = new System.Drawing.Point(16, 293);
+            this.btnEditProductSupplier.Location = new System.Drawing.Point(16, 285);
             this.btnEditProductSupplier.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnEditProductSupplier.Name = "btnEditProductSupplier";
             this.btnEditProductSupplier.Primary = true;
@@ -158,7 +157,7 @@
             this.Controls.Add(this.btnEditProductSupplier);
             this.Controls.Add(this.btnNewProduct);
             this.Controls.Add(this.btnNewSupplier);
-            this.Controls.Add(this.lbCurrentSuppliers);
+            this.Controls.Add(this.lballSuppliers);
             this.Controls.Add(this.lblCurrentSuppliers);
             this.Controls.Add(this.lblProduct);
             this.Controls.Add(this.cboProduct);
@@ -167,6 +166,7 @@
             this.Name = "FrmProductSupplierHomecs";
             this.Sizable = false;
             this.Text = "Products and Suppliers";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmProductSupplierHomecs_FormClosing);
             this.Load += new System.EventHandler(this.FrmProductSupplierHomecs_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -178,7 +178,7 @@
         private System.Windows.Forms.ComboBox cboProduct;
         private MaterialSkin.Controls.MaterialLabel lblProduct;
         private MaterialSkin.Controls.MaterialLabel lblCurrentSuppliers;
-        private System.Windows.Forms.ListBox lbCurrentSuppliers;
+        private System.Windows.Forms.ListBox lballSuppliers;
         private MaterialSkin.Controls.MaterialRaisedButton btnNewSupplier;
         private MaterialSkin.Controls.MaterialRaisedButton btnNewProduct;
         private MaterialSkin.Controls.MaterialRaisedButton btnEditProductSupplier;

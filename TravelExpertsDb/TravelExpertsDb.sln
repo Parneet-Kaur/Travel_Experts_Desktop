@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelExpertsDb", "TravelEx
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B6211B99-3721-4539-A5A9-0F32E7A02213}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\..\Users\743479\Downloads\earth.png = ..\..\..\Users\743479\Downloads\earth.png
 		initial.cs = initial.cs
 	EndProjectSection
 EndProject
