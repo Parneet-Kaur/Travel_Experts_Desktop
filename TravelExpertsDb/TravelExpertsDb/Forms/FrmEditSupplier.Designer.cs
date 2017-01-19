@@ -166,6 +166,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmEditSupplier";
             this.Sizable = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit Supplier";
             this.Load += new System.EventHandler(this.FrmEditSupplier_Load);
             this.ResumeLayout(false);

@@ -39,6 +39,9 @@
             this.BtnCancel = new MaterialSkin.Controls.MaterialRaisedButton();
             this.lbSuppliers = new System.Windows.Forms.ListBox();
             this.lvPackageProductSuppliers = new System.Windows.Forms.ListView();
+            this.Product = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Supplier = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ProductSupplierId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.txtPackageName = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.txtBasePrice = new MaterialSkin.Controls.MaterialSingleLineTextField();
@@ -48,9 +51,6 @@
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.cboProduct = new System.Windows.Forms.ComboBox();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
-            this.Product = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Supplier = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ProductSupplierId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
             this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
@@ -188,6 +188,20 @@
             this.lvPackageProductSuppliers.UseCompatibleStateImageBehavior = false;
             this.lvPackageProductSuppliers.View = System.Windows.Forms.View.Details;
             // 
+            // Product
+            // 
+            this.Product.Text = "Product";
+            this.Product.Width = 74;
+            // 
+            // Supplier
+            // 
+            this.Supplier.Text = "Supplier";
+            this.Supplier.Width = 127;
+            // 
+            // ProductSupplierId
+            // 
+            this.ProductSupplierId.Width = 0;
+            // 
             // materialLabel1
             // 
             this.materialLabel1.AutoSize = true;
@@ -307,20 +321,6 @@
             this.materialLabel3.TabIndex = 21;
             this.materialLabel3.Text = "Products:";
             // 
-            // Product
-            // 
-            this.Product.Text = "Product";
-            this.Product.Width = 74;
-            // 
-            // Supplier
-            // 
-            this.Supplier.Text = "Supplier";
-            this.Supplier.Width = 127;
-            // 
-            // ProductSupplierId
-            // 
-            this.ProductSupplierId.Width = 0;
-            // 
             // dtpStartDate
             // 
             this.dtpStartDate.Location = new System.Drawing.Point(183, 114);
@@ -365,6 +365,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmAddPackage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add a New Package";
             this.Load += new System.EventHandler(this.FrmAddPackage_Load);
             this.ResumeLayout(false);

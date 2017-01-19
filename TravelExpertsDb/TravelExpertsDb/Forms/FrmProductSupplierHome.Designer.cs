@@ -165,6 +165,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmProductSupplierHomecs";
             this.Sizable = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Products and Suppliers";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmProductSupplierHomecs_FormClosing);
             this.Load += new System.EventHandler(this.FrmProductSupplierHomecs_Load);

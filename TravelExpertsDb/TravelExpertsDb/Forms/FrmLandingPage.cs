@@ -11,24 +11,18 @@ using System.Windows.Forms;
 
 namespace TravelExpertsDb.Forms
 {
+    
     public partial class FrmLandingPage : MaterialForm
     {
+        
+
+
         public FrmLandingPage()
         {
             InitializeComponent();
-        }
-
-        private void btnProductSuppliers_Click(object sender, EventArgs e)
-        {
-            FrmProductSupplierHomecs productSupplierHome = new FrmProductSupplierHomecs();
-            this.Hide();
-            DialogResult result = productSupplierHome.ShowDialog();
-            if(result == DialogResult.OK)
-            {
-                this.Show();
-            }
          
         }
+
 
         private void FrmLandingPage_Load(object sender, EventArgs e)
         {
@@ -36,10 +30,24 @@ namespace TravelExpertsDb.Forms
             DialogResult result = login.ShowDialog();
         }
 
-        private void BtnPackages_Click(object sender, EventArgs e)
+
+        private void btnPackages_Click(object sender, EventArgs e)
         {
             FrmAddPackage newPackage = new FrmAddPackage();
             DialogResult result = newPackage.ShowDialog();
+        }
+
+        private void btnProductSuppliers_Click_1(object sender, EventArgs e)
+        {
+            FrmProductSupplierHomecs productSupplierHome = new FrmProductSupplierHomecs();
+            this.Hide();
+            DialogResult result = productSupplierHome.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                this.Show();
+
+            }
+
         }
     }
 }

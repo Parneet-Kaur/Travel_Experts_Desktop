@@ -158,7 +158,7 @@ namespace TravelExpertsDb
 
                 SqlDataReader reader = selectCommand.ExecuteReader();
 
-                
+
                 while (reader.Read())
                 {
                     ProductSupplier productSupplier = new ProductSupplier();
@@ -176,7 +176,7 @@ namespace TravelExpertsDb
             {
                 connection.Close();
             }
-       
+
             return productSuppliers;
         }
 
@@ -201,7 +201,7 @@ namespace TravelExpertsDb
             }
             catch (SqlException)
             {
-                MessageBox.Show("Cannot delete supplier " + supplier.SupName + " from product " + product.ProdName  + " as it is currently supplied in a package(s).", "Deletion Error");
+                MessageBox.Show("Cannot delete supplier " + supplier.SupName + " from product " + product.ProdName + " as it is currently supplied in a package(s).", "Deletion Error");
             }
             finally
             {
@@ -269,6 +269,73 @@ namespace TravelExpertsDb
             }
 
 
+
         }
-    }
-}
+
+
+        ////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////
+
+
+            //Inserting a supplier into a new product......
+            //Method to instantly create a product and supplier
+        public static bool InsertProductToSupplier(int supplierId)
+        {
+            SqlConnection connection = DataAccess.getConnection();
+
+            string selectStatement = "SELECT IDENT_CURRENT('Products') FROM Products";
+
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            int newProductId = 0;
+
+            try
+            {
+                connection.Open();
+                newProductId = Convert.ToInt32(selectCommand.ExecuteScalar());
+
+
+            }
+            catch(SqlException ex)
+            {
+                MessageBox.Show(ex.GetType() + ex.Message);
+                return false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+            string insertStatement = "INSERT INTO Products_Suppliers Values (@ProductId, @SupplierId)";
+
+            SqlCommand insertCommand = new SqlCommand(insertStatement, connection);
+
+            insertCommand.Parameters.AddWithValue("@ProductId",newProductId);
+            insertCommand.Parameters.AddWithValue("@SupplierId", supplierId);
+            try
+            {
+                connection.Open();
+                insertCommand.ExecuteNonQuery();
+                return true;
+
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.GetType() + ex.Message);
+                return false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+
+        }
+
+
+
+    }//public ProductDB
+}//NameSpace
+    

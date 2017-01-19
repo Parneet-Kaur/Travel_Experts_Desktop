@@ -27,9 +27,21 @@ namespace TravelExpertsDb.Forms
         private void lbProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
             Product selectedProduct = (Product)lbProducts.SelectedItem;
-            lbCurrentSuppliers.DataSource = selectedProduct.GetSuppliers();//refresh the product's suppliers
-            lbAllSuppliers.DataSource = selectedProduct.GetRemainingSuppliers(); //refresh the all suppliers
 
+           List<ProductSupplier> productsSupplier  = selectedProduct.GetSuppliers();//refresh the product's suppliers
+            lbCurrentSuppliers.DataSource = productsSupplier;//refresh the product's suppliers
+
+            List<ProductSupplier> remainingProductSupplier = selectedProduct.GetRemainingSuppliers();
+            if (productsSupplier.Count != 0)
+            {
+                lbAllSuppliers.DataSource = remainingProductSupplier; //refresh the all suppliers
+                btnRemove.Enabled = true;
+            }
+            else
+            {
+                lbAllSuppliers.DataSource = remainingProductSupplier;
+                btnRemove.Enabled = false;
+            }
             //Display the product for the attached suppliers
             lblProductSuppliers.Text = "Current Suppliers for " + selectedProduct.ProdName;
 
@@ -51,8 +63,22 @@ namespace TravelExpertsDb.Forms
             ProductDB.RemoveProductsSupplier(product, productsupplier);
 
             //Refresh the Dataset
-            lbCurrentSuppliers.DataSource = ProductDB.GetProductSuppliers(product);
+         
             lbAllSuppliers.DataSource = ProductDB.GetSuppliersNotInProduct(product);
+
+         
+
+            List<ProductSupplier> remainingProductSupplier = ProductDB.GetProductSuppliers(product);
+            if (remainingProductSupplier.Count != 0)
+            {
+                lbCurrentSuppliers.DataSource = remainingProductSupplier; //refresh the all suppliers
+                btnRemove.Enabled = true;
+            }
+            else
+            {
+                lbCurrentSuppliers.DataSource = remainingProductSupplier;
+                btnRemove.Enabled = false;
+            }
 
         }
 
@@ -68,7 +94,20 @@ namespace TravelExpertsDb.Forms
 
             //Refresh the Dataset
             lbCurrentSuppliers.DataSource = ProductDB.GetProductSuppliers(product);
+
             lbAllSuppliers.DataSource = ProductDB.GetSuppliersNotInProduct(product);
+
+            List<ProductSupplier> remainingProductSupplier = ProductDB.GetProductSuppliers(product);
+            if (remainingProductSupplier.Count != 0)
+            {
+                lbCurrentSuppliers.DataSource = remainingProductSupplier; //refresh the all suppliers
+                btnRemove.Enabled = true;
+            }
+            else
+            {
+                lbCurrentSuppliers.DataSource = remainingProductSupplier;
+                btnRemove.Enabled = false;
+            }
         }
 
 
