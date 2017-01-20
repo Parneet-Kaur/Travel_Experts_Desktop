@@ -34,6 +34,7 @@
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnLogin = new MaterialSkin.Controls.MaterialRaisedButton();
             this.lblErrorMessage = new MaterialSkin.Controls.MaterialLabel();
+            this.btnExit = new MaterialSkin.Controls.MaterialRaisedButton();
             this.SuspendLayout();
             // 
             // lblUsername
@@ -80,12 +81,13 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(94, 26);
             this.txtPassword.TabIndex = 3;
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // btnLogin
             // 
             this.btnLogin.Depth = 0;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.btnLogin.Location = new System.Drawing.Point(168, 210);
+            this.btnLogin.Location = new System.Drawing.Point(96, 213);
             this.btnLogin.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Primary = true;
@@ -109,11 +111,26 @@
             this.lblErrorMessage.Text = "Either the username or password was incorrect.";
             this.lblErrorMessage.Visible = false;
             // 
+            // btnExit
+            // 
+            this.btnExit.Depth = 0;
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.btnExit.Location = new System.Drawing.Point(239, 213);
+            this.btnExit.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Primary = true;
+            this.btnExit.Size = new System.Drawing.Size(111, 21);
+            this.btnExit.TabIndex = 6;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 261);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.lblErrorMessage);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtPassword);
@@ -121,8 +138,11 @@
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUsername);
             this.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Login";
             this.Text = "Welcome to Travel Experts";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -136,6 +156,7 @@
         private System.Windows.Forms.TextBox txtPassword;
         private MaterialSkin.Controls.MaterialRaisedButton btnLogin;
         private MaterialSkin.Controls.MaterialLabel lblErrorMessage;
+        private MaterialSkin.Controls.MaterialRaisedButton btnExit;
     }
 }
 

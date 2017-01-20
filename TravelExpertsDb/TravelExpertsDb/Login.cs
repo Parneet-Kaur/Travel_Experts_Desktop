@@ -20,17 +20,17 @@ namespace TravelExpertsDb
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            Validator v1 = new Validator();
-            if (v1.isEmpty(txtUsername)) {
+         
+            if (Validator.isEmpty(txtUsername)) {
                 lblErrorMessage.Text = "Username is required.";
                 lblErrorMessage.Visible = true;
             }
-            else if (v1.isEmpty(txtPassword)) {
+            else if (Validator.isEmpty(txtPassword)) {
                 lblErrorMessage.Text = "Password is required.";
                 lblErrorMessage.Visible = true;
             }
             else {
-                if (v1.username(txtUsername) )
+                if (Validator.userName(txtUsername) )
                 {
                     //if  the data validates then compare against db
                     DataAccessLogin login = new DataAccessLogin();
@@ -39,6 +39,7 @@ namespace TravelExpertsDb
                         //send to home page
                         lblErrorMessage.Text = "Welcome agent";
                         lblErrorMessage.Visible = true;
+                        Close();
                     }
                     else {
                         lblErrorMessage.Text = "Invalid credentials";
@@ -54,6 +55,16 @@ namespace TravelExpertsDb
             }//end of exterior else
           
 
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            ControlBox = false;
         }
     }
 }
