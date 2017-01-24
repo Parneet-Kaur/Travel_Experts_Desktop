@@ -372,7 +372,21 @@ namespace TravelExpertsDb
             }
 
         }
+
+        public static DataTable GetAllPackages() {
+
+            SqlConnection connection = DataAccess.getConnection();
+            string com = "SELECT * FROM PACKAGES";
+            SqlCommand command = new SqlCommand(com,connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(reader);
+            connection.Close();
+            return dt;
+        }
+
     }// end of class
 
-
+    
 }
