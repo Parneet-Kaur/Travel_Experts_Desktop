@@ -181,7 +181,7 @@
             this.Product,
             this.Supplier,
             this.ProductSupplierId});
-            this.lvPackageProductSuppliers.Location = new System.Drawing.Point(687, 168);
+            this.lvPackageProductSuppliers.Location = new System.Drawing.Point(691, 168);
             this.lvPackageProductSuppliers.Name = "lvPackageProductSuppliers";
             this.lvPackageProductSuppliers.Size = new System.Drawing.Size(205, 147);
             this.lvPackageProductSuppliers.TabIndex = 10;
@@ -339,7 +339,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(913, 393);
+            this.ClientSize = new System.Drawing.Size(917, 469);
             this.Controls.Add(this.dtpEndDate);
             this.Controls.Add(this.dtpStartDate);
             this.Controls.Add(this.materialLabel3);

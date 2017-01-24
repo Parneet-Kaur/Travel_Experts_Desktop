@@ -45,18 +45,14 @@ namespace TravelExpertsDb
 
 
         //Get all products from the database
-        public static List<Product> GetProducts()
-        {
+        public static List<Product> GetProducts(){
 
 
             SqlConnection connection = DataAccess.getConnection();
-
             string selectStatement = "SELECT ProductId, ProdName " +
                                      "FROM Products ORDER BY ProdName Asc";
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
-
             connection.Open();
-
             SqlDataReader reader = selectCommand.ExecuteReader();
 
             var products = new List<Product>();

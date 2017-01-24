@@ -28,36 +28,25 @@ namespace TravelExpertsDb.Forms
             if(Validator.IsPresent(txtNewProduct))
             {
                 string newProduct = txtNewProduct.Text;
-
                 List<Product> allProducts = ProductDB.GetProducts();
-
-                if(ConfirmDuplicateProduct(newProduct, allProducts))
-                {
+                if(ConfirmDuplicateProduct(newProduct, allProducts)){
                     ProductDB.AddNewProduct(newProduct); //enter into the database
              
                     // for each item in the current suppliers in this new product, we are going to add the supplier into the database
                     //however if there is nothing in the listview item... it will return nothing
                     //This is how we will allow products to be added to suppliers...
-                    foreach (ListViewItem supplier in lvCurrentSuppliers.Items)
-                    {
-                        
+                    foreach (ListViewItem supplier in lvCurrentSuppliers.Items){                        
                         int supplierid = Convert.ToInt32(supplier.SubItems[1].Text);
-
                         ProductDB.InsertProductToSupplier(supplierid);
                     }
                     MessageBox.Show(newProduct + " has been successfully added to the database.", "Success");
-
                     DialogResult = DialogResult.OK;
                 }
-                else
-                {
+                else{
                     MessageBox.Show(newProduct + " already exists in the database!", "Error");
 
                 }
-
-
                 }//Validator is present
-
             }//button ok click
 
 

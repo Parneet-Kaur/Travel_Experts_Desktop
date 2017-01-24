@@ -23,23 +23,15 @@ namespace TravelExpertsDb.Forms
         private void FrmAddPackage_Load(object sender, EventArgs e)
         {
             cboProduct.DataSource = ProductDB.GetProducts();
-
-
-
         }
 
         private void cboProduct_SelectedValueChanged(object sender, EventArgs e)
         {
-
-
-
             //need to create an if statement for when the list contains no values.....
-
             //Grab a list of all the suppliers associated with the product EXCLUDING the ones you
             //want to add to the package
             //refresh the datasource for the suppliers attached to the product
             List<ProductSupplier> remainingSuppliers = RemainingSuppliersforProduct();
-
             if (remainingSuppliers.Count != 0)
             {
                 lbSuppliers.DataSource = remainingSuppliers;
@@ -80,15 +72,14 @@ namespace TravelExpertsDb.Forms
             {
                 lbSuppliers.DataSource = remainingSuppliers;
                 btnAdd.Enabled = true;
+
             }
             else
             {
                 lbSuppliers.DataSource = remainingSuppliers;
                 btnAdd.Enabled = false;
             }
-
-
-        }
+        }// end of function
 
 
 
@@ -97,7 +88,6 @@ namespace TravelExpertsDb.Forms
         //want to add to the package
         private List<ProductSupplier> RemainingSuppliersforProduct()
        {
-
             //Grabbing the Product class to grab its suppliers
             Product selectedProduct = (Product)cboProduct.SelectedItem;
 
@@ -118,7 +108,7 @@ namespace TravelExpertsDb.Forms
                                  where !(productSupplierIds.Any(packagesupplier => packagesupplier == supplier.ProductSupplierId))
                                  select supplier;
 
-            List<ProductSupplier> suppliersRemaining = new List<ProductSupplier>();
+            List<ProductSupplier> suppliersRemaining = new List<ProductSupplier>();//second list for keeping track of remaining supplier  
             foreach (var supplier in suppliersNotIn)
             {
                 suppliersRemaining.Add(supplier);
@@ -139,12 +129,12 @@ namespace TravelExpertsDb.Forms
 
             if (remainingSuppliers.Count != 0)
             {
-                lbSuppliers.DataSource = remainingSuppliers;
+                lbSuppliers.DataSource = remainingSuppliers;//what are u doing here??; redundant code
                 btnAdd.Enabled = true;
             }
             else
             {
-                lbSuppliers.DataSource = remainingSuppliers;
+                lbSuppliers.DataSource = remainingSuppliers;//what are u doing here??; redundant code
                 btnAdd.Enabled = false;
             }
 

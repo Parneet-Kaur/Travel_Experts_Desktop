@@ -56,53 +56,35 @@ namespace TravelExpertsDb.Data
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////
        public static bool AddNewProductSupplierToPackage(int product_supplierID)
         {
+            //where are u using the parameter from the function call
             SqlConnection connection = DataAccess.getConnection();
-
             string selectStatement = "SELECT IDENT_CURRENT('Packages') FROM Packages";
-
-
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
-
-
-
             int newPackageId = 0;
-            try
-            {
+            try{
                 connection.Open();
                 newPackageId = Convert.ToInt32(selectCommand.ExecuteScalar()); //Grabbing the new packageID.
-
             }
-            catch (SqlException ex)
-            {
+            catch (SqlException ex){
                 MessageBox.Show(ex.GetType() + ex.Message);
             }
-            finally
-            {
+            finally{
                 connection.Close();
             }
-
-
-
             string insertStatement = @"INSERT INTO Packages_Products_Suppliers VALUES (@PackageId, @ProductSupplierId)";
-
-
             SqlCommand insertCommand = new SqlCommand(insertStatement, connection);
             insertCommand.Parameters.AddWithValue("@PackageId", newPackageId);
             insertCommand.Parameters.AddWithValue("@ProductSupplierId", product_supplierID);
-
-            try
-            {
+            try{
                 connection.Open();
                 insertCommand.ExecuteNonQuery();
                 return true;
             }
-            catch (SqlException ex)
-            {
+            catch (SqlException ex)            {
                 MessageBox.Show(ex.GetType() + ex.Message);
                 return false;
             }
-            finally
-            {
+            finally{
                 connection.Close();
                 
             }
@@ -111,5 +93,5 @@ namespace TravelExpertsDb.Data
         }
 
 
-    }
+    }//end of class
 }

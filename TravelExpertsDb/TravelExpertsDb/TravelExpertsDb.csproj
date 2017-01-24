@@ -65,6 +65,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddPackage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPackage.Designer.cs">
+      <DependentUpon>AddPackage.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataAccess.cs" />
     <Compile Include="DataAccessLogin.cs" />
     <Compile Include="Data\PackageDB.cs" />
@@ -123,6 +129,7 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="PackageProductDetails.cs" />
     <Compile Include="Packages.cs" />
     <Compile Include="PackagesDb.cs" />
     <Compile Include="Entity\Product.cs" />
@@ -131,7 +138,18 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\SupplierDB.cs" />
+    <Compile Include="Supplier.cs" />
+    <Compile Include="UpdatePackage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdatePackage.Designer.cs">
+      <DependentUpon>UpdatePackage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Validator.cs" />
+    <Compile Include="ValidatorPackages.cs" />
+    <EmbeddedResource Include="AddPackage.resx">
+      <DependentUpon>AddPackage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmAddPackage.resx">
       <DependentUpon>FrmAddPackage.cs</DependentUpon>
     </EmbeddedResource>
@@ -168,6 +186,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UpdatePackage.resx">
+      <DependentUpon>UpdatePackage.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
