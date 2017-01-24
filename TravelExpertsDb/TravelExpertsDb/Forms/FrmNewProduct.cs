@@ -57,7 +57,7 @@ namespace TravelExpertsDb.Forms
 
             foreach (Product product in allProducts)// You can change to regular expression to grab all the instances of the product
             {
-                if (product.ProdName == newProduct)
+                if (product.ProdName.ToUpper() == newProduct.ToUpper())
                 {
                     
                     return false;

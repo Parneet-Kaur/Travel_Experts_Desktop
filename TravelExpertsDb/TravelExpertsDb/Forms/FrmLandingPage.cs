@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TravelExpertsDb.Forms
-{
+{// This is the initial landing page for the website... where it will redirect the users to the 
+    // the packages and products/suppliers...
     
     public partial class FrmLandingPage : MaterialForm
     {
@@ -22,6 +23,8 @@ namespace TravelExpertsDb.Forms
             InitializeComponent();
          
         }
+
+
 
 
         private void FrmLandingPage_Load(object sender, EventArgs e)

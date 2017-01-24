@@ -330,6 +330,64 @@ namespace TravelExpertsDb
 
         }
 
+        //NEW CODE TO ADD TO THE FINAL...///////////////////////////////////////////////
+        public static bool UpdateNewProductsWithaSupplier(int productId)
+        {
+            int currentHighestSupplierId = 0; //set the current supplierid to 0
+
+            SqlConnection connection = DataAccess.getConnection();
+
+            string selectMaxStatement = "Select Max(SupplierId) from Suppliers";
+
+            SqlCommand maxsupplieridCommand = new SqlCommand(selectMaxStatement, connection);
+
+            try
+            {
+                connection.Open();
+                currentHighestSupplierId = Convert.ToInt32(maxsupplieridCommand.ExecuteScalar()); //Grabbing the highest supplier id from the table
+                                                                                                  //because supplierid is not incremented
+
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.GetType() + ex.Message);
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            int newSupplierId = currentHighestSupplierId; //after you insert the supplier into the database,
+            //the highest number is going to be the newSupplierid.....
+
+
+            string insertStatement = "INSERT INTO Products_Suppliers Values (@ProductId, @SupplierId)";
+
+            SqlCommand insertCommand = new SqlCommand(insertStatement, connection);
+
+            insertCommand.Parameters.AddWithValue("@ProductId", productId);
+            insertCommand.Parameters.AddWithValue("@SupplierId", newSupplierId);
+            try
+            {
+                connection.Open();
+                insertCommand.ExecuteNonQuery();
+                return true;
+
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.GetType() + ex.Message);
+                return false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+        }
+
 
 
     }//public ProductDB

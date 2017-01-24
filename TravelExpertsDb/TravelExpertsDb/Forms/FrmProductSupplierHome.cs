@@ -11,7 +11,10 @@ using System.Windows.Forms;
 
 namespace TravelExpertsDb.Forms
 {
-  
+  // Callias Nguyen
+  // Abel Surace
+  // Landing page for the whole product suppliers.....
+  // opening forms via this page
 
     public partial class FrmProductSupplierHomecs : MaterialForm
     {
@@ -22,6 +25,7 @@ namespace TravelExpertsDb.Forms
         {
             InitializeComponent();
         }
+
 
         private void btnNewSupplier_Click(object sender, EventArgs e)
         {
@@ -44,14 +48,14 @@ namespace TravelExpertsDb.Forms
         }
 
 
-
+        //opening a new product form
         private void btnNewProduct_Click(object sender, EventArgs e)
         {
             FrmNewProduct newProductForm = new FrmNewProduct();         
             DialogResult result = newProductForm.ShowDialog();
             if(result == DialogResult.OK)
             {
-               
+               //refreshing the product datasource
                 cboProduct.DataSource = ProductDB.GetProducts();
         
             }
@@ -59,13 +63,14 @@ namespace TravelExpertsDb.Forms
         }
 
 
+        //editing the product/supplier
         private void btnEditProductSupplier_Click(object sender, EventArgs e)
         {
             FrmEditProductSuppliers newProductSuppliers = new FrmEditProductSuppliers();
             DialogResult result = newProductSuppliers.ShowDialog();
             if (result == DialogResult.OK)
             {
-
+                //refresh the datasource for products and supplier
                 Product selectedProduct = (Product)cboProduct.SelectedValue;
                 lballSuppliers.DataSource = ProductDB.GetProductSuppliers(selectedProduct);
                 cboProduct.DataSource = ProductDB.GetProducts();
@@ -74,6 +79,8 @@ namespace TravelExpertsDb.Forms
             }
         }
 
+
+        // editing a supplier 
         private void btnEditSupplier_Click(object sender, EventArgs e)
         {
             FrmEditSupplier editSupplier = new FrmEditSupplier();
@@ -87,6 +94,7 @@ namespace TravelExpertsDb.Forms
             }
         }
 
+        // editing product 
         private void btnEditProduct_Click(object sender, EventArgs e)
         {
             
@@ -98,6 +106,7 @@ namespace TravelExpertsDb.Forms
                 cboProduct.DataSource = ProductDB.GetProducts();
             }
         }
+
 
         private void FrmProductSupplierHomecs_FormClosing(object sender, FormClosingEventArgs e)
         {

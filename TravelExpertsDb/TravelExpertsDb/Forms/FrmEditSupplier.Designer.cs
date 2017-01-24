@@ -147,6 +147,7 @@
             this.txtNewSupplier.SelectionStart = 0;
             this.txtNewSupplier.Size = new System.Drawing.Size(220, 23);
             this.txtNewSupplier.TabIndex = 7;
+            this.txtNewSupplier.Tag = "Supplier Name";
             this.txtNewSupplier.UseSystemPasswordChar = false;
             // 
             // FrmEditSupplier

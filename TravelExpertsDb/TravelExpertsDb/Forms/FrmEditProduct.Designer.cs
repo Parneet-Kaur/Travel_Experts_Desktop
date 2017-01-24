@@ -51,6 +51,7 @@
             this.txtNewProduct.SelectionStart = 0;
             this.txtNewProduct.Size = new System.Drawing.Size(220, 23);
             this.txtNewProduct.TabIndex = 15;
+            this.txtNewProduct.Tag = "Product Name";
             this.txtNewProduct.UseSystemPasswordChar = false;
             // 
             // btnCancel

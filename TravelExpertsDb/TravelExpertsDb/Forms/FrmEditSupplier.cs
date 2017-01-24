@@ -25,6 +25,8 @@ namespace TravelExpertsDb.Forms
         {
             List<ProductSupplier> allSuppliers = SupplierDB.GetAllSuppliers();
 
+
+            //refreshing the datasource
             lbSuppliers.DataSource = allSuppliers; 
             lbSuppliers.ValueMember = "SupName";
             lbSuppliers.DisplayMember = "SupName";
@@ -79,6 +81,8 @@ namespace TravelExpertsDb.Forms
             Close();
         }
 
+
+        //editing the save 
         private void btnSave_Click(object sender, EventArgs e)
         {
             ProductSupplier editSupplier = (ProductSupplier)lbSuppliers.SelectedItem;
