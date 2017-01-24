@@ -216,22 +216,12 @@ namespace TravelExpertsDb
                     MessageBox.Show("Please select a value.");
                 }
 
-                if (ckbStartDate.Checked)
-                {
-                    Package.PkgStartDate = DateTime.MinValue;
-                }
-                else
-                {
+                
+                
                     Package.PkgStartDate = dtpStartDate.Value;
-                }
-                if (ckbEndDate.Checked)
-                {
-                    Package.PkgEndDate = DateTime.MinValue;
-                }
-                else
-                {
+                
                     Package.PkgEndDate = dtpStartDate.Value;
-                }
+               
                 Package.PkgDesc = rtbPkgDesc.Text;
                 //to validate base price and assign it to package
                 if (ValidatorPackages.isEmpty(txtPkgBasePrice))
@@ -296,10 +286,10 @@ namespace TravelExpertsDb
               Validator.IsPresent(rtbPkgDesc) &&
             Validator.IsPresent(txtPkgBasePrice) &&
             Validator.IsDecimal(txtPkgBasePrice) &&
-            Validator.IsWithinRange(txtPkgBasePrice, 0, 100000) &&
+            //Validator.IsWithinRange(txtPkgBasePrice, 0, 100000) &&
             Validator.IsPresent(txtAgencyCommision) &&
             Validator.IsDecimal(txtAgencyCommision) &&
-             Validator.IsWithinRange(txtAgencyCommision, 0, 100000) &&
+             //Validator.IsWithinRange(txtAgencyCommision, 0, 100000) &&
           
            
              Validator.CommissionBasePriceCheck(Convert.ToDecimal(txtPkgBasePrice.Text), Convert.ToDecimal(txtAgencyCommision.Text));

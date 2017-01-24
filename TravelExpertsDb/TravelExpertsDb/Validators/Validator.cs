@@ -91,18 +91,20 @@ namespace TravelExpertsDb
         public static bool IsWithinRange(MaterialSingleLineTextField tb, decimal min, decimal max) //test to see if it is in range  min and max
         {
 
-            int value = Convert.ToInt32(tb.Text); //integer value otherwise produces an error 
+            decimal value = Convert.ToDecimal(tb.Text); //integer value otherwise produces an error 
             if (value >= min && value <= max) //if between the max/min values return true
             {
                 return true;
             }
             else
             {
-                MessageBox.Show(tb.Tag + " Must be in range from " + min + " & " + max);
+                MessageBox.Show(tb.Tag + " Must be in range from " + min + " & " + max, "Input Error");
                 tb.Focus();
                 return false;
             }
         }
+
+
 
         public static bool IsInteger(TextBox tb)
         {
