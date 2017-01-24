@@ -88,7 +88,7 @@ namespace TravelExpertsDb
         }
 
 
-        public static bool IsWithinRange(TextBox tb, decimal min, decimal max) //test to see if it is in range  min and max
+        public static bool IsWithinRange(MaterialSingleLineTextField tb, decimal min, decimal max) //test to see if it is in range  min and max
         {
 
             int value = Convert.ToInt32(tb.Text); //integer value otherwise produces an error 

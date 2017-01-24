@@ -292,13 +292,16 @@ namespace TravelExpertsDb
         private bool ValidData()
         {
             return
-            Validator.IsPresent(txtAgencyCommision) &&
-            Validator.IsDecimal(txtAgencyCommision) &&
+            Validator.ValidDate(dtpStartDate.Value, dtpEndDate.Value) &&
+              Validator.IsPresent(rtbPkgDesc) &&
             Validator.IsPresent(txtPkgBasePrice) &&
             Validator.IsDecimal(txtPkgBasePrice) &&
-            Validator.IsPresent(rtbPkgDesc) &&
+            Validator.IsWithinRange(txtPkgBasePrice, 0, 100000) &&
+            Validator.IsPresent(txtAgencyCommision) &&
+            Validator.IsDecimal(txtAgencyCommision) &&
+             Validator.IsWithinRange(txtAgencyCommision, 0, 100000) &&
           
-            Validator.ValidDate(dtpStartDate.Value, dtpEndDate.Value) &&
+           
              Validator.CommissionBasePriceCheck(Convert.ToDecimal(txtPkgBasePrice.Text), Convert.ToDecimal(txtAgencyCommision.Text));
 
         }

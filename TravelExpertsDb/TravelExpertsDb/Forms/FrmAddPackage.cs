@@ -200,13 +200,16 @@ namespace TravelExpertsDb.Forms
          private bool ValidData()
             {
                 return
-                Validator.IsPresent(txtCommission) &&
-                Validator.IsDecimal(txtCommission) &&
+                Validator.IsPresent(txtPackageName) &&
+                 Validator.ValidDate(dtpStartDate.Value, dtpEndDate.Value) &&
+                  Validator.IsPresent(txtDescription) && 
                 Validator.IsPresent(txtBasePrice) &&
                 Validator.IsDecimal(txtBasePrice) &&
-                Validator.IsPresent(txtDescription) &&
-                Validator.IsPresent(txtPackageName) &&
-                Validator.ValidDate(dtpStartDate.Value, dtpEndDate.Value) &&
+                Validator.IsWithinRange(txtBasePrice, 0, 100000) &&
+                Validator.IsPresent(txtCommission) &&
+                Validator.IsDecimal(txtCommission) &&
+                Validator.IsWithinRange(txtCommission, 0, 100000) &&
+
                  Validator.CommissionBasePriceCheck(Convert.ToDecimal(txtBasePrice.Text), Convert.ToDecimal(txtCommission.Text));
 
             }
