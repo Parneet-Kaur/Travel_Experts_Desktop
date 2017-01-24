@@ -36,8 +36,15 @@ namespace TravelExpertsDb.Forms
 
         private void btnPackages_Click(object sender, EventArgs e)
         {
-            FrmAddPackage newPackage = new FrmAddPackage();
-            DialogResult result = newPackage.ShowDialog();
+            DefaultPackages PackageLandingPage = new DefaultPackages();
+            this.Hide();
+            DialogResult result = PackageLandingPage.ShowDialog();
+      
+            if (result == DialogResult.OK)
+            {
+                this.Show();
+
+            }
         }
 
         private void btnProductSuppliers_Click_1(object sender, EventArgs e)
@@ -51,6 +58,14 @@ namespace TravelExpertsDb.Forms
 
             }
 
+        }
+
+
+        // when the form closes the landing page shows up again
+
+        private void FrmLandingPage_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

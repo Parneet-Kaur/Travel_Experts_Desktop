@@ -8,8 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TravelExpertsDb.Forms;
 
 namespace TravelExpertsDb
+    //Parneet Kuar
 {
     public partial class DefaultPackages : MaterialForm
     {
@@ -18,34 +20,47 @@ namespace TravelExpertsDb
             InitializeComponent();
         }
 
+
+        //once the addpackage is created the dialog box shows of the add package
         private void btnAddPackage_Click(object sender, EventArgs e)
         {
-            AddPackage addPackage = new AddPackage();
-            this.Hide();
+            FrmAddPackage addPackage = new FrmAddPackage();
+            
             DialogResult result = addPackage.ShowDialog();
-            if (result == DialogResult.OK)
+            if (result == DialogResult.OK)// if the package has been successfully added then we can refresh the datasource
+
             {
-                this.Show();
+                //Here we are refreshing the datasource
+                dtgPackages.DataSource = PackagesDb.GetAllPackages();
 
             }
         }
 
+
+        // opening the update package form 
         private void btnUpdatePackage_Click(object sender, EventArgs e)
         {
             UpdatePackage updatePackage = new UpdatePackage();
-            this.Hide();
-            DialogResult result =updatePackage .ShowDialog();
+            
+            DialogResult result = updatePackage.ShowDialog();
             if (result == DialogResult.OK)
             {
-                this.Show();
-
+                //refreshing the datasource
+                dtgPackages.DataSource = PackagesDb.GetAllPackages();
             }
 
         }
 
+
         private void DefaultPackages_Load(object sender, EventArgs e)
         {
+            //on the load we are refreshing the datasource
             dtgPackages.DataSource = PackagesDb.GetAllPackages();
+        }
+
+        private void DefaultPackages_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult = DialogResult.OK; // when we close the form... we go back to the landing page
         }
     }
 }

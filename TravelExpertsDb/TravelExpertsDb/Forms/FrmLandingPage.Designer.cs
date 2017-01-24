@@ -86,6 +86,7 @@
             this.Name = "FrmLandingPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Welcome Back!";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmLandingPage_FormClosing);
             this.Load += new System.EventHandler(this.FrmLandingPage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

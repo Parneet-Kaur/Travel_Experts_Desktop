@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace TravelExpertsDb
 {
@@ -11,7 +12,8 @@ namespace TravelExpertsDb
     {
        
                       
-        public bool validateCredentials(string user,string password) {
+        public bool validateCredentials(string user,string password)
+        {
 
             //string connectionString = "Data Source=ICTVM-IVMOQ3HR1\\SQLEXPRESS;" +
             //                          "Database=TravelExperts;" +
@@ -22,25 +24,45 @@ namespace TravelExpertsDb
 
             //SqlConnection connection = new SqlConnection(connectionString);
 
+
             SqlConnection connection = DataAccess.getConnection();
-            connection.Open();
 
 
-            SqlCommand com = new SqlCommand("Select AgtBusPhone from agents where agentid="+user, connection);
-            SqlDataReader r = com.ExecuteReader();
-            bool result = r.Read();//bug fix; doesn't work without this
-            string pass = r["AgtBusPhone"].ToString();//for testing
-            
-            if (r[0].ToString() != password)
+            try
             {
-                connection.Close();
+                connection.Open();
+
+
+                SqlCommand com = new SqlCommand("Select AgtBusPhone from agents where agentid=" + user, connection);
+                SqlDataReader r = com.ExecuteReader();
+                //bool result = r.Read();//bug fix; doesn't work without this
+
+                if (r.Read())// if reader returns false then the password is incorrect
+                {
+                    string pass = r["AgtBusPhone"].ToString();//for testing
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                //if (r[0].ToString() != password)
+                //{
+
+                //    return false;
+                //}
+                //     return true;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
                 return false;
             }
-            else {
+            finally
+            {
                 connection.Close();
-                return true;
             }
-
+             
             
         }
   

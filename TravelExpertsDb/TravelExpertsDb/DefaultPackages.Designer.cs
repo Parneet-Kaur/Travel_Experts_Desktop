@@ -37,7 +37,7 @@
             // btnAddPackage
             // 
             this.btnAddPackage.Depth = 0;
-            this.btnAddPackage.Location = new System.Drawing.Point(64, 243);
+            this.btnAddPackage.Location = new System.Drawing.Point(152, 243);
             this.btnAddPackage.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAddPackage.Name = "btnAddPackage";
             this.btnAddPackage.Primary = true;
@@ -50,7 +50,7 @@
             // btnUpdatePackage
             // 
             this.btnUpdatePackage.Depth = 0;
-            this.btnUpdatePackage.Location = new System.Drawing.Point(333, 243);
+            this.btnUpdatePackage.Location = new System.Drawing.Point(367, 243);
             this.btnUpdatePackage.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnUpdatePackage.Name = "btnUpdatePackage";
             this.btnUpdatePackage.Primary = true;
@@ -65,22 +65,29 @@
             this.dtgPackages.AllowUserToAddRows = false;
             this.dtgPackages.AllowUserToDeleteRows = false;
             this.dtgPackages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgPackages.Location = new System.Drawing.Point(44, 81);
+            this.dtgPackages.Location = new System.Drawing.Point(28, 76);
             this.dtgPackages.Name = "dtgPackages";
             this.dtgPackages.ReadOnly = true;
-            this.dtgPackages.Size = new System.Drawing.Size(460, 150);
+            this.dtgPackages.RowHeadersVisible = false;
+            this.dtgPackages.ShowCellErrors = false;
+            this.dtgPackages.ShowCellToolTips = false;
+            this.dtgPackages.ShowEditingIcon = false;
+            this.dtgPackages.ShowRowErrors = false;
+            this.dtgPackages.Size = new System.Drawing.Size(596, 150);
             this.dtgPackages.TabIndex = 2;
             // 
             // DefaultPackages
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(546, 331);
+            this.ClientSize = new System.Drawing.Size(669, 331);
             this.Controls.Add(this.dtgPackages);
             this.Controls.Add(this.btnUpdatePackage);
             this.Controls.Add(this.btnAddPackage);
             this.Name = "DefaultPackages";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add or Edit your packages here. ";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DefaultPackages_FormClosing);
             this.Load += new System.EventHandler(this.DefaultPackages_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgPackages)).EndInit();
             this.ResumeLayout(false);

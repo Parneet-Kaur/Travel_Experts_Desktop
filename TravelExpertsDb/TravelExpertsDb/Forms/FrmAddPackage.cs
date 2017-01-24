@@ -12,7 +12,8 @@ using TravelExpertsDb.Data;
 using TravelExpertsDb.Entity;
 
 namespace TravelExpertsDb.Forms
-{
+{// Parneet
+
     public partial class FrmAddPackage : MaterialForm
     {
         public FrmAddPackage()
@@ -22,6 +23,7 @@ namespace TravelExpertsDb.Forms
 
         private void FrmAddPackage_Load(object sender, EventArgs e)
         {
+            //load the product datasource when the form first loads
             cboProduct.DataSource = ProductDB.GetProducts();
         }
 
@@ -40,7 +42,7 @@ namespace TravelExpertsDb.Forms
             else
             {
                 lbSuppliers.DataSource = remainingSuppliers;
-                btnAdd.Enabled = false;
+                btnAdd.Enabled = false;// disable the add button when there is nothing in the suppliers listbox
             }
 
         }
@@ -55,6 +57,7 @@ namespace TravelExpertsDb.Forms
             Product selectedProduct = (Product)cboProduct.SelectedItem;
             ProductSupplier selectedSupplier = (ProductSupplier)lbSuppliers.SelectedItem;
 
+            // creating a new listview Item (to add to the listview package product supplier( everytime you add another product and supplier
 
             string newProduct = selectedProduct.ProdName;
             string newSupplier = selectedSupplier.SupName;
@@ -68,6 +71,9 @@ namespace TravelExpertsDb.Forms
             //refresh the datasource for the suppliers attached to the product
             List<ProductSupplier> remainingSuppliers = RemainingSuppliersforProduct();
 
+
+            //Checking to see if the count of the List<> is 0, and if it is the btn adding will be disabled
+            //will refresh the datasource regardless
             if (remainingSuppliers.Count != 0)
             {
                 lbSuppliers.DataSource = remainingSuppliers;
@@ -117,6 +123,9 @@ namespace TravelExpertsDb.Forms
             return suppliersRemaining;
         }
 
+
+
+
         private void btnRemove_Click(object sender, EventArgs e)
         {
             foreach (ListViewItem item in lvPackageProductSuppliers.SelectedItems)
@@ -124,17 +133,20 @@ namespace TravelExpertsDb.Forms
                 lvPackageProductSuppliers.Items.Remove(item);
             }
 
+
             //refresh the datasource for the suppliers attached to the product
             List<ProductSupplier> remainingSuppliers = RemainingSuppliersforProduct();
+            lbSuppliers.DataSource = remainingSuppliers;//what are u doing here??; redundant code
 
+            //the list of remaining supplier is empty 
             if (remainingSuppliers.Count != 0)
             {
-                lbSuppliers.DataSource = remainingSuppliers;//what are u doing here??; redundant code
+             
                 btnAdd.Enabled = true;
             }
             else
             {
-                lbSuppliers.DataSource = remainingSuppliers;//what are u doing here??; redundant code
+      
                 btnAdd.Enabled = false;
             }
 
@@ -142,42 +154,62 @@ namespace TravelExpertsDb.Forms
 
         private void BtnAccept_Click(object sender, EventArgs e)
         {
-            Package newPackage = new Package();
-
-            newPackage.PkgName = Convert.ToString(txtPackageName.Text);
-            newPackage.PkgStartDate = dtpStartDate.Value;
-            newPackage.PkgEndDate = dtpEndDate.Value;
-            newPackage.PkgDesc = Convert.ToString(txtDescription.Text);
-            newPackage.PkgBasePrice = Convert.ToDouble(txtBasePrice.Text);
-            newPackage.PkgAgencyCommission = Convert.ToDouble(txtCommission.Text);
-
-
-            if(PackageDB.AddNewPackage(newPackage))
+            if (ValidData())//validating all text fields
             {
-                MessageBox.Show("Package has been inserted into the database!", "Success");
-            }
-            else
-            {
-                MessageBox.Show("Error in the database", "Error");
-            }
+
+                Package newPackage = new Package();
+
+                newPackage.PkgName = Convert.ToString(txtPackageName.Text);
+                newPackage.PkgStartDate = dtpStartDate.Value;
+                newPackage.PkgEndDate = dtpEndDate.Value;
+                newPackage.PkgDesc = Convert.ToString(txtDescription.Text);
+                newPackage.PkgBasePrice = Convert.ToDouble(txtBasePrice.Text);
+                newPackage.PkgAgencyCommission = Convert.ToDouble(txtCommission.Text);
 
 
-            foreach (ListViewItem item in lvPackageProductSuppliers.Items)
-            {
-                int newProductSupplierId = Convert.ToInt32(item.SubItems[2].Text);
-
-                if (PackageDB.AddNewProductSupplierToPackage(newProductSupplierId))
+                if (PackageDB.AddNewPackage(newPackage))
                 {
-                    
+                    MessageBox.Show("Package has been inserted into the database!", "Success");
                 }
                 else
                 {
-                    MessageBox.Show("Error with this supplier", "Database Error");
+                    MessageBox.Show("Error in the database", "Error");
                 }
+
+
+                foreach (ListViewItem item in lvPackageProductSuppliers.Items)
+                {
+                    int newProductSupplierId = Convert.ToInt32(item.SubItems[2].Text);
+
+                    if (PackageDB.AddNewProductSupplierToPackage(newProductSupplierId))
+                    {
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error with this supplier", "Database Error");
+                    }
+                }
+                DialogResult = DialogResult.OK;
+            }//validating data
+          
+
+        }//btnaccept
+
+
+         private bool ValidData()
+            {
+                return
+                Validator.IsPresent(txtCommission) &&
+                Validator.IsDecimal(txtCommission) &&
+                Validator.IsPresent(txtBasePrice) &&
+                Validator.IsDecimal(txtBasePrice) &&
+                Validator.IsPresent(txtDescription) &&
+                Validator.IsPresent(txtPackageName) &&
+                Validator.ValidDate(dtpStartDate.Value, dtpEndDate.Value) &&
+                 Validator.CommissionBasePriceCheck(Convert.ToDecimal(txtBasePrice.Text), Convert.ToDecimal(txtCommission.Text));
+
             }
-
-
-
-        }
+    
     }
 }

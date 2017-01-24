@@ -14,6 +14,9 @@ namespace TravelExpertsDb
     {
         /*************Author: Parneet Dec2016****/
 
+            // validators are used to clarify the data in the desktop app....
+           
+
         public static bool isEmpty(TextBox tb) {
 
             if (tb.Text=="") {
@@ -69,6 +72,22 @@ namespace TravelExpertsDb
         }
 
 
+        public static bool IsPresent(RichTextBox tb)
+        {
+            if (tb.Text != "")
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Expected " + tb.Tag + " is required", "Input Error");
+                tb.Focus();
+                tb.BackColor = Color.FromArgb(255, 127, 80);
+                return false;
+            }
+        }
+
+
         public static bool IsWithinRange(TextBox tb, decimal min, decimal max) //test to see if it is in range  min and max
         {
 
@@ -101,5 +120,50 @@ namespace TravelExpertsDb
         }
 
 
-    }
+        public static bool ValidDate(DateTime StartDate, DateTime EndDate)
+        {
+            if (EndDate < StartDate)
+            {
+                MessageBox.Show("End date has to be after the start date.", "Input Error");
+                return false;
+            }
+            else
+                return true;
+        }
+
+
+
+        public static bool IsDecimal(MaterialSingleLineTextField tb)
+        {
+
+
+            decimal num;
+            if (decimal.TryParse(tb.Text.Replace("$", ""), out num))
+            {
+                return true;
+            }
+            else
+            {
+
+                MessageBox.Show(tb.Tag + " has to be a number!", "Input Error");
+                tb.Focus();
+                tb.BackColor = Color.FromArgb(255, 127, 80);
+                return false;
+            }
+
+        }//isDecimal
+
+
+        public static bool CommissionBasePriceCheck(decimal BasePrice, decimal Commission)
+        {
+            if (BasePrice < Commission)
+            {
+                MessageBox.Show("Base price has to be greater than the commission.", "Input Error");
+                return false;
+            }
+            else
+                return true;
+        }
+
+    }//Class Validator
 }

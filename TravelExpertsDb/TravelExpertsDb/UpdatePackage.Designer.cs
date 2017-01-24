@@ -53,11 +53,11 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.lvSelectProductSupplier = new System.Windows.Forms.ListView();
-            this.btnUpdatePkg = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.btnHome = new MaterialSkin.Controls.MaterialRaisedButton();
             this.Product_Update = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Supplier_Update = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ProductSupplierId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnUpdatePkg = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.btnHome = new MaterialSkin.Controls.MaterialRaisedButton();
             this.SuspendLayout();
             // 
             // lblPackageName
@@ -134,9 +134,9 @@
             this.lblAgencyCommision.Location = new System.Drawing.Point(39, 438);
             this.lblAgencyCommision.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblAgencyCommision.Name = "lblAgencyCommision";
-            this.lblAgencyCommision.Size = new System.Drawing.Size(140, 19);
+            this.lblAgencyCommision.Size = new System.Drawing.Size(148, 19);
             this.lblAgencyCommision.TabIndex = 5;
-            this.lblAgencyCommision.Text = "Agency Commision";
+            this.lblAgencyCommision.Text = "Agency Commission";
             // 
             // cbPackageName
             // 
@@ -153,6 +153,7 @@
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Size = new System.Drawing.Size(166, 20);
             this.dtpStartDate.TabIndex = 7;
+            this.dtpStartDate.Tag = "Start Date";
             // 
             // ckbStartDate
             // 
@@ -170,6 +171,7 @@
             this.dtpEndDate.Name = "dtpEndDate";
             this.dtpEndDate.Size = new System.Drawing.Size(166, 20);
             this.dtpEndDate.TabIndex = 9;
+            this.dtpEndDate.Tag = "End Date";
             // 
             // ckbEndDate
             // 
@@ -188,6 +190,7 @@
             this.rtbPkgDesc.Name = "rtbPkgDesc";
             this.rtbPkgDesc.Size = new System.Drawing.Size(169, 109);
             this.rtbPkgDesc.TabIndex = 11;
+            this.rtbPkgDesc.Tag = "Description";
             this.rtbPkgDesc.Text = "";
             // 
             // txtPkgBasePrice
@@ -203,6 +206,7 @@
             this.txtPkgBasePrice.SelectionStart = 0;
             this.txtPkgBasePrice.Size = new System.Drawing.Size(166, 23);
             this.txtPkgBasePrice.TabIndex = 12;
+            this.txtPkgBasePrice.Tag = "Base Price";
             this.txtPkgBasePrice.UseSystemPasswordChar = false;
             // 
             // txtAgencyCommision
@@ -218,6 +222,7 @@
             this.txtAgencyCommision.SelectionStart = 0;
             this.txtAgencyCommision.Size = new System.Drawing.Size(166, 23);
             this.txtAgencyCommision.TabIndex = 13;
+            this.txtAgencyCommision.Tag = "Agency Commission";
             this.txtAgencyCommision.UseSystemPasswordChar = false;
             // 
             // lvPackageDetails
@@ -331,6 +336,19 @@
             this.lvSelectProductSupplier.UseCompatibleStateImageBehavior = false;
             this.lvSelectProductSupplier.View = System.Windows.Forms.View.Details;
             // 
+            // Product_Update
+            // 
+            this.Product_Update.Text = "Product";
+            // 
+            // Supplier_Update
+            // 
+            this.Supplier_Update.Text = "Supplier";
+            // 
+            // ProductSupplierId
+            // 
+            this.ProductSupplierId.Text = "ProductSupplierId";
+            this.ProductSupplierId.Width = 0;
+            // 
             // btnUpdatePkg
             // 
             this.btnUpdatePkg.Depth = 0;
@@ -355,19 +373,7 @@
             this.btnHome.TabIndex = 24;
             this.btnHome.Text = "Home";
             this.btnHome.UseVisualStyleBackColor = true;
-            // 
-            // Product_Update
-            // 
-            this.Product_Update.Text = "Product";
-            // 
-            // Supplier_Update
-            // 
-            this.Supplier_Update.Text = "Supplier";
-            // 
-            // ProductSupplierId
-            // 
-            this.ProductSupplierId.Text = "ProductSupplierId";
-            this.ProductSupplierId.Width = 0;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
             // UpdatePackage
             // 
