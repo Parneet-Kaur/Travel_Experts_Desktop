@@ -32,12 +32,20 @@
             this.btnCancel = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.txtNewSupplierName = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.lbAllProducts = new System.Windows.Forms.ListBox();
+            this.lblAllProducts = new System.Windows.Forms.Label();
+            this.lvChosenProducts = new System.Windows.Forms.ListView();
+            this.ProductName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ProductId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnOk
             // 
             this.btnOk.Depth = 0;
-            this.btnOk.Location = new System.Drawing.Point(157, 169);
+            this.btnOk.Location = new System.Drawing.Point(16, 202);
             this.btnOk.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnOk.Name = "btnOk";
             this.btnOk.Primary = true;
@@ -50,7 +58,7 @@
             // btnCancel
             // 
             this.btnCancel.Depth = 0;
-            this.btnCancel.Location = new System.Drawing.Point(280, 169);
+            this.btnCancel.Location = new System.Drawing.Point(144, 202);
             this.btnCancel.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Primary = true;
@@ -66,7 +74,7 @@
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(23, 106);
+            this.materialLabel1.Location = new System.Drawing.Point(23, 99);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
             this.materialLabel1.Size = new System.Drawing.Size(140, 19);
@@ -77,23 +85,98 @@
             // 
             this.txtNewSupplierName.Depth = 0;
             this.txtNewSupplierName.Hint = "";
-            this.txtNewSupplierName.Location = new System.Drawing.Point(181, 106);
+            this.txtNewSupplierName.Location = new System.Drawing.Point(27, 134);
             this.txtNewSupplierName.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtNewSupplierName.Name = "txtNewSupplierName";
             this.txtNewSupplierName.PasswordChar = '\0';
             this.txtNewSupplierName.SelectedText = "";
             this.txtNewSupplierName.SelectionLength = 0;
             this.txtNewSupplierName.SelectionStart = 0;
-            this.txtNewSupplierName.Size = new System.Drawing.Size(168, 23);
+            this.txtNewSupplierName.Size = new System.Drawing.Size(230, 23);
             this.txtNewSupplierName.TabIndex = 3;
             this.txtNewSupplierName.Tag = "Supplier Name";
             this.txtNewSupplierName.UseSystemPasswordChar = false;
+            // 
+            // lbAllProducts
+            // 
+            this.lbAllProducts.FormattingEnabled = true;
+            this.lbAllProducts.Location = new System.Drawing.Point(287, 96);
+            this.lbAllProducts.Name = "lbAllProducts";
+            this.lbAllProducts.Size = new System.Drawing.Size(135, 134);
+            this.lbAllProducts.TabIndex = 5;
+            // 
+            // lblAllProducts
+            // 
+            this.lblAllProducts.AutoSize = true;
+            this.lblAllProducts.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAllProducts.Location = new System.Drawing.Point(284, 77);
+            this.lblAllProducts.Name = "lblAllProducts";
+            this.lblAllProducts.Size = new System.Drawing.Size(155, 16);
+            this.lblAllProducts.TabIndex = 7;
+            this.lblAllProducts.Text = "Select your Products:";
+            // 
+            // lvChosenProducts
+            // 
+            this.lvChosenProducts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ProductName,
+            this.ProductId});
+            this.lvChosenProducts.Location = new System.Drawing.Point(503, 96);
+            this.lvChosenProducts.Name = "lvChosenProducts";
+            this.lvChosenProducts.Size = new System.Drawing.Size(139, 133);
+            this.lvChosenProducts.TabIndex = 15;
+            this.lvChosenProducts.UseCompatibleStateImageBehavior = false;
+            this.lvChosenProducts.View = System.Windows.Forms.View.Details;
+            // 
+            // ProductName
+            // 
+            this.ProductName.Text = "Product Name";
+            this.ProductName.Width = 134;
+            // 
+            // ProductId
+            // 
+            this.ProductId.Width = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(500, 77);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(129, 16);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Chosen Products:";
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.Location = new System.Drawing.Point(444, 177);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(43, 38);
+            this.btnRemove.TabIndex = 13;
+            this.btnRemove.Text = "<";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(444, 119);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(43, 38);
+            this.btnAdd.TabIndex = 12;
+            this.btnAdd.Text = ">";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // FrmNewSupplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(406, 219);
+            this.ClientSize = new System.Drawing.Size(685, 257);
+            this.Controls.Add(this.lvChosenProducts);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnRemove);
+            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.lblAllProducts);
+            this.Controls.Add(this.lbAllProducts);
             this.Controls.Add(this.txtNewSupplierName);
             this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.btnCancel);
@@ -103,6 +186,7 @@
             this.Name = "FrmNewSupplier";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Supplier";
+            this.Load += new System.EventHandler(this.FrmNewSupplier_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,5 +198,13 @@
         private MaterialSkin.Controls.MaterialRaisedButton btnCancel;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtNewSupplierName;
+        private System.Windows.Forms.ListBox lbAllProducts;
+        private System.Windows.Forms.Label lblAllProducts;
+        private System.Windows.Forms.ListView lvChosenProducts;
+        private System.Windows.Forms.ColumnHeader ProductName;
+        private System.Windows.Forms.ColumnHeader ProductId;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.Button btnAdd;
     }
 }

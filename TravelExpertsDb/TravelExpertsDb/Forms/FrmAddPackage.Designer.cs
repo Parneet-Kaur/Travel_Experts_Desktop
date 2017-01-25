@@ -53,6 +53,7 @@
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
             this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
+            this.lblPackageDetails = new MaterialSkin.Controls.MaterialLabel();
             this.SuspendLayout();
             // 
             // lblPackageName
@@ -61,7 +62,7 @@
             this.lblPackageName.Depth = 0;
             this.lblPackageName.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblPackageName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblPackageName.Location = new System.Drawing.Point(46, 76);
+            this.lblPackageName.Location = new System.Drawing.Point(31, 76);
             this.lblPackageName.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblPackageName.Name = "lblPackageName";
             this.lblPackageName.Size = new System.Drawing.Size(114, 19);
@@ -74,7 +75,7 @@
             this.lblStartDate.Depth = 0;
             this.lblStartDate.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblStartDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblStartDate.Location = new System.Drawing.Point(80, 116);
+            this.lblStartDate.Location = new System.Drawing.Point(65, 116);
             this.lblStartDate.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblStartDate.Name = "lblStartDate";
             this.lblStartDate.Size = new System.Drawing.Size(80, 19);
@@ -87,7 +88,7 @@
             this.lblPackageEndDate.Depth = 0;
             this.lblPackageEndDate.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblPackageEndDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblPackageEndDate.Location = new System.Drawing.Point(87, 149);
+            this.lblPackageEndDate.Location = new System.Drawing.Point(72, 163);
             this.lblPackageEndDate.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblPackageEndDate.Name = "lblPackageEndDate";
             this.lblPackageEndDate.Size = new System.Drawing.Size(73, 19);
@@ -100,7 +101,7 @@
             this.lblDescription.Depth = 0;
             this.lblDescription.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblDescription.Location = new System.Drawing.Point(70, 184);
+            this.lblDescription.Location = new System.Drawing.Point(55, 202);
             this.lblDescription.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(90, 19);
@@ -113,7 +114,7 @@
             this.lblBasePrice.Depth = 0;
             this.lblBasePrice.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblBasePrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblBasePrice.Location = new System.Drawing.Point(76, 296);
+            this.lblBasePrice.Location = new System.Drawing.Point(61, 344);
             this.lblBasePrice.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblBasePrice.Name = "lblBasePrice";
             this.lblBasePrice.Size = new System.Drawing.Size(84, 19);
@@ -126,7 +127,7 @@
             this.lblCommission.Depth = 0;
             this.lblCommission.Font = new System.Drawing.Font("Roboto", 11F);
             this.lblCommission.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblCommission.Location = new System.Drawing.Point(46, 339);
+            this.lblCommission.Location = new System.Drawing.Point(46, 385);
             this.lblCommission.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblCommission.Name = "lblCommission";
             this.lblCommission.Size = new System.Drawing.Size(99, 19);
@@ -135,16 +136,17 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(183, 185);
+            this.txtDescription.Location = new System.Drawing.Point(166, 202);
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(156, 98);
+            this.txtDescription.Size = new System.Drawing.Size(173, 130);
             this.txtDescription.TabIndex = 6;
+            this.txtDescription.Tag = "Description";
             this.txtDescription.Text = "";
             // 
             // BtnAccept
             // 
             this.BtnAccept.Depth = 0;
-            this.BtnAccept.Location = new System.Drawing.Point(590, 339);
+            this.BtnAccept.Location = new System.Drawing.Point(35, 453);
             this.BtnAccept.MouseState = MaterialSkin.MouseState.HOVER;
             this.BtnAccept.Name = "BtnAccept";
             this.BtnAccept.Primary = true;
@@ -157,7 +159,7 @@
             // BtnCancel
             // 
             this.BtnCancel.Depth = 0;
-            this.BtnCancel.Location = new System.Drawing.Point(737, 339);
+            this.BtnCancel.Location = new System.Drawing.Point(185, 453);
             this.BtnCancel.MouseState = MaterialSkin.MouseState.HOVER;
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Primary = true;
@@ -170,9 +172,9 @@
             // lbSuppliers
             // 
             this.lbSuppliers.FormattingEnabled = true;
-            this.lbSuppliers.Location = new System.Drawing.Point(414, 168);
+            this.lbSuppliers.Location = new System.Drawing.Point(388, 185);
             this.lbSuppliers.Name = "lbSuppliers";
-            this.lbSuppliers.Size = new System.Drawing.Size(167, 147);
+            this.lbSuppliers.Size = new System.Drawing.Size(186, 160);
             this.lbSuppliers.TabIndex = 9;
             // 
             // lvPackageProductSuppliers
@@ -181,9 +183,9 @@
             this.Product,
             this.Supplier,
             this.ProductSupplierId});
-            this.lvPackageProductSuppliers.Location = new System.Drawing.Point(691, 168);
+            this.lvPackageProductSuppliers.Location = new System.Drawing.Point(687, 184);
             this.lvPackageProductSuppliers.Name = "lvPackageProductSuppliers";
-            this.lvPackageProductSuppliers.Size = new System.Drawing.Size(205, 147);
+            this.lvPackageProductSuppliers.Size = new System.Drawing.Size(205, 161);
             this.lvPackageProductSuppliers.TabIndex = 10;
             this.lvPackageProductSuppliers.UseCompatibleStateImageBehavior = false;
             this.lvPackageProductSuppliers.View = System.Windows.Forms.View.Details;
@@ -208,7 +210,7 @@
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(410, 146);
+            this.materialLabel1.Location = new System.Drawing.Point(384, 163);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
             this.materialLabel1.Size = new System.Drawing.Size(75, 19);
@@ -219,51 +221,54 @@
             // 
             this.txtPackageName.Depth = 0;
             this.txtPackageName.Hint = "";
-            this.txtPackageName.Location = new System.Drawing.Point(183, 76);
+            this.txtPackageName.Location = new System.Drawing.Point(166, 76);
             this.txtPackageName.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtPackageName.Name = "txtPackageName";
             this.txtPackageName.PasswordChar = '\0';
             this.txtPackageName.SelectedText = "";
             this.txtPackageName.SelectionLength = 0;
             this.txtPackageName.SelectionStart = 0;
-            this.txtPackageName.Size = new System.Drawing.Size(156, 23);
+            this.txtPackageName.Size = new System.Drawing.Size(173, 23);
             this.txtPackageName.TabIndex = 12;
+            this.txtPackageName.Tag = "Package Name";
             this.txtPackageName.UseSystemPasswordChar = false;
             // 
             // txtBasePrice
             // 
             this.txtBasePrice.Depth = 0;
             this.txtBasePrice.Hint = "";
-            this.txtBasePrice.Location = new System.Drawing.Point(183, 296);
+            this.txtBasePrice.Location = new System.Drawing.Point(166, 340);
             this.txtBasePrice.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtBasePrice.Name = "txtBasePrice";
             this.txtBasePrice.PasswordChar = '\0';
             this.txtBasePrice.SelectedText = "";
             this.txtBasePrice.SelectionLength = 0;
             this.txtBasePrice.SelectionStart = 0;
-            this.txtBasePrice.Size = new System.Drawing.Size(156, 23);
+            this.txtBasePrice.Size = new System.Drawing.Size(173, 23);
             this.txtBasePrice.TabIndex = 15;
+            this.txtBasePrice.Tag = "Base Price";
             this.txtBasePrice.UseSystemPasswordChar = false;
             // 
             // txtCommission
             // 
             this.txtCommission.Depth = 0;
             this.txtCommission.Hint = "";
-            this.txtCommission.Location = new System.Drawing.Point(183, 339);
+            this.txtCommission.Location = new System.Drawing.Point(166, 385);
             this.txtCommission.MouseState = MaterialSkin.MouseState.HOVER;
             this.txtCommission.Name = "txtCommission";
             this.txtCommission.PasswordChar = '\0';
             this.txtCommission.SelectedText = "";
             this.txtCommission.SelectionLength = 0;
             this.txtCommission.SelectionStart = 0;
-            this.txtCommission.Size = new System.Drawing.Size(156, 23);
+            this.txtCommission.Size = new System.Drawing.Size(173, 23);
             this.txtCommission.TabIndex = 16;
+            this.txtCommission.Tag = "Commission";
             this.txtCommission.UseSystemPasswordChar = false;
             // 
             // btnAdd
             // 
             this.btnAdd.Depth = 0;
-            this.btnAdd.Location = new System.Drawing.Point(608, 174);
+            this.btnAdd.Location = new System.Drawing.Point(608, 202);
             this.btnAdd.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Primary = true;
@@ -276,7 +281,7 @@
             // btnRemove
             // 
             this.btnRemove.Depth = 0;
-            this.btnRemove.Location = new System.Drawing.Point(608, 257);
+            this.btnRemove.Location = new System.Drawing.Point(608, 274);
             this.btnRemove.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Primary = true;
@@ -292,7 +297,7 @@
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(687, 146);
+            this.materialLabel2.Location = new System.Drawing.Point(687, 163);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(205, 19);
@@ -302,7 +307,7 @@
             // cboProduct
             // 
             this.cboProduct.FormattingEnabled = true;
-            this.cboProduct.Location = new System.Drawing.Point(414, 98);
+            this.cboProduct.Location = new System.Drawing.Point(479, 113);
             this.cboProduct.Name = "cboProduct";
             this.cboProduct.Size = new System.Drawing.Size(121, 21);
             this.cboProduct.TabIndex = 20;
@@ -314,7 +319,7 @@
             this.materialLabel3.Depth = 0;
             this.materialLabel3.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel3.Location = new System.Drawing.Point(410, 76);
+            this.materialLabel3.Location = new System.Drawing.Point(394, 113);
             this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
             this.materialLabel3.Size = new System.Drawing.Size(73, 19);
@@ -323,23 +328,39 @@
             // 
             // dtpStartDate
             // 
-            this.dtpStartDate.Location = new System.Drawing.Point(183, 114);
+            this.dtpStartDate.Location = new System.Drawing.Point(166, 114);
             this.dtpStartDate.Name = "dtpStartDate";
-            this.dtpStartDate.Size = new System.Drawing.Size(156, 20);
+            this.dtpStartDate.Size = new System.Drawing.Size(173, 20);
             this.dtpStartDate.TabIndex = 22;
+            this.dtpStartDate.Value = new System.DateTime(2017, 1, 24, 0, 0, 0, 0);
             // 
             // dtpEndDate
             // 
-            this.dtpEndDate.Location = new System.Drawing.Point(183, 149);
+            this.dtpEndDate.Location = new System.Drawing.Point(166, 161);
             this.dtpEndDate.Name = "dtpEndDate";
-            this.dtpEndDate.Size = new System.Drawing.Size(156, 20);
+            this.dtpEndDate.Size = new System.Drawing.Size(173, 20);
             this.dtpEndDate.TabIndex = 23;
+            this.dtpEndDate.Value = new System.DateTime(2017, 1, 24, 0, 0, 0, 0);
+            // 
+            // lblPackageDetails
+            // 
+            this.lblPackageDetails.AutoSize = true;
+            this.lblPackageDetails.Depth = 0;
+            this.lblPackageDetails.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblPackageDetails.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblPackageDetails.Location = new System.Drawing.Point(394, 76);
+            this.lblPackageDetails.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblPackageDetails.Name = "lblPackageDetails";
+            this.lblPackageDetails.Size = new System.Drawing.Size(190, 19);
+            this.lblPackageDetails.TabIndex = 24;
+            this.lblPackageDetails.Text = "This package should have :";
             // 
             // FrmAddPackage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(917, 469);
+            this.ClientSize = new System.Drawing.Size(917, 518);
+            this.Controls.Add(this.lblPackageDetails);
             this.Controls.Add(this.dtpEndDate);
             this.Controls.Add(this.dtpStartDate);
             this.Controls.Add(this.materialLabel3);
@@ -366,7 +387,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmAddPackage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add a New Package";
+            this.Text = "Add Another Package For Your Customer";
             this.Load += new System.EventHandler(this.FrmAddPackage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -400,5 +421,6 @@
         private System.Windows.Forms.ColumnHeader ProductSupplierId;
         private System.Windows.Forms.DateTimePicker dtpStartDate;
         private System.Windows.Forms.DateTimePicker dtpEndDate;
+        private MaterialSkin.Controls.MaterialLabel lblPackageDetails;
     }
 }

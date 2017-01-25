@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TravelExpertsDb.Forms
-{
+{//Callias Nguyen, Ami Umeda
     public partial class FrmEditSupplier : MaterialForm
 
     {
@@ -21,10 +21,13 @@ namespace TravelExpertsDb.Forms
             InitializeComponent();
         }
 
+
         private void FrmEditSupplier_Load(object sender, EventArgs e)
-        {
+        {//updating all the supplier to choose from in a list
             List<ProductSupplier> allSuppliers = SupplierDB.GetAllSuppliers();
 
+
+            //refreshing the datasource
             lbSuppliers.DataSource = allSuppliers; 
             lbSuppliers.ValueMember = "SupName";
             lbSuppliers.DisplayMember = "SupName";
@@ -66,6 +69,8 @@ namespace TravelExpertsDb.Forms
             // CANT ACTUALLY FOCUS THIS MATERIAL SKIN TEXT.............
         }
 
+
+        //every time the value has changed the supplier name changes to show the reflection
         private void lbSuppliers_SelectedValueChanged(object sender, EventArgs e)
         {
             ProductSupplier editSupplier = (ProductSupplier)lbSuppliers.SelectedItem;
@@ -74,11 +79,15 @@ namespace TravelExpertsDb.Forms
      
         }
 
+
+        //close the form
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+
+        //editing the save 
         private void btnSave_Click(object sender, EventArgs e)
         {
             ProductSupplier editSupplier = (ProductSupplier)lbSuppliers.SelectedItem;

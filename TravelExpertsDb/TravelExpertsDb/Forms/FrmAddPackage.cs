@@ -12,7 +12,9 @@ using TravelExpertsDb.Data;
 using TravelExpertsDb.Entity;
 
 namespace TravelExpertsDb.Forms
-{
+{// Parneet Kaur 
+//Callias Nguyen 
+
     public partial class FrmAddPackage : MaterialForm
     {
         public FrmAddPackage()
@@ -22,6 +24,7 @@ namespace TravelExpertsDb.Forms
 
         private void FrmAddPackage_Load(object sender, EventArgs e)
         {
+            //load the product datasource when the form first loads
             cboProduct.DataSource = ProductDB.GetProducts();
         }
 
@@ -40,7 +43,7 @@ namespace TravelExpertsDb.Forms
             else
             {
                 lbSuppliers.DataSource = remainingSuppliers;
-                btnAdd.Enabled = false;
+                btnAdd.Enabled = false;// disable the add button when there is nothing in the suppliers listbox
             }
 
         }
@@ -55,6 +58,7 @@ namespace TravelExpertsDb.Forms
             Product selectedProduct = (Product)cboProduct.SelectedItem;
             ProductSupplier selectedSupplier = (ProductSupplier)lbSuppliers.SelectedItem;
 
+            // creating a new listview Item (to add to the listview package product supplier( everytime you add another product and supplier
 
             string newProduct = selectedProduct.ProdName;
             string newSupplier = selectedSupplier.SupName;
@@ -68,6 +72,9 @@ namespace TravelExpertsDb.Forms
             //refresh the datasource for the suppliers attached to the product
             List<ProductSupplier> remainingSuppliers = RemainingSuppliersforProduct();
 
+
+            //Checking to see if the count of the List<> is 0, and if it is the btn adding will be disabled
+            //will refresh the datasource regardless
             if (remainingSuppliers.Count != 0)
             {
                 lbSuppliers.DataSource = remainingSuppliers;
@@ -84,10 +91,105 @@ namespace TravelExpertsDb.Forms
 
 
 
+
+
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in lvPackageProductSuppliers.SelectedItems)
+            {
+                lvPackageProductSuppliers.Items.Remove(item);
+            }
+
+
+            //refresh the datasource for the suppliers attached to the product
+            List<ProductSupplier> remainingSuppliers = RemainingSuppliersforProduct();
+            lbSuppliers.DataSource = remainingSuppliers;//what are u doing here??; redundant code
+
+            //the list of remaining supplier is empty 
+            if (remainingSuppliers.Count != 0)
+            {
+             
+                btnAdd.Enabled = true;
+            }
+            else
+            {
+      
+                btnAdd.Enabled = false;
+            }
+
+        }
+
+        private void BtnAccept_Click(object sender, EventArgs e)
+        {
+            if (ValidData())//validating all text fields
+            {
+                //putting the package information into the database here... but first we are creating a new package
+                Package newPackage = new Package();
+
+                newPackage.PkgName = Convert.ToString(txtPackageName.Text);
+                newPackage.PkgStartDate = dtpStartDate.Value;
+                newPackage.PkgEndDate = Convert.ToDateTime(dtpEndDate.Text);
+                newPackage.PkgDesc = Convert.ToString(txtDescription.Text);
+                newPackage.PkgBasePrice = Convert.ToDouble(txtBasePrice.Text);
+                newPackage.PkgAgencyCommission = Convert.ToDouble(txtCommission.Text);
+
+                //true or false for the new package adding
+                if (PackageDB.AddNewPackage(newPackage))
+                {
+                    MessageBox.Show("Package has been inserted into the database!", "Success");
+                }
+                else
+                {
+                    MessageBox.Show("Error in the database", "Error");
+                }
+
+                //once you create the new package you want to loop around the listview to grab the productsupplierid so you 
+                //can add the productsupplier with the package into the dtabases
+                foreach (ListViewItem item in lvPackageProductSuppliers.Items)
+                {
+                    int newProductSupplierId = Convert.ToInt32(item.SubItems[2].Text);
+
+                    if (PackageDB.AddNewProductSupplierToPackage(newProductSupplierId))
+                    {
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error with this supplier", "Database Error");
+                    }
+                }
+                DialogResult = DialogResult.OK;
+            }//validating data
+          
+
+        }//btnaccept
+
+        //putting all the validators into a single method... so it is easy to read up top
+         private bool ValidData()
+            {
+                return
+                Validator.IsPresent(txtPackageName) &&
+                 Validator.ValidDate(dtpStartDate.Value, dtpEndDate.Value) &&
+                  Validator.IsPresent(txtDescription) && 
+                Validator.IsPresent(txtBasePrice) &&
+                Validator.IsDecimal(txtBasePrice) &&
+                Validator.IsWithinRange(txtBasePrice, 0, 100000) &&
+                Validator.IsPresent(txtCommission) &&
+                Validator.IsDecimal(txtCommission) &&
+                Validator.IsWithinRange(txtCommission, 0, 100000) &&
+
+                 Validator.CommissionBasePriceCheck(Convert.ToDecimal(txtBasePrice.Text), Convert.ToDecimal(txtCommission.Text));
+
+            }
+
+
+
+
         //A method to grab a list of all the suppliers associated with the product EXCLUDING the ones you
         //want to add to the package
         private List<ProductSupplier> RemainingSuppliersforProduct()
-       {
+        {
             //Grabbing the Product class to grab its suppliers
             Product selectedProduct = (Product)cboProduct.SelectedItem;
 
@@ -104,6 +206,7 @@ namespace TravelExpertsDb.Forms
 
             }
 
+            //using linq to remove any suppliers that are selected in package, and removing them as a selection choice
             var suppliersNotIn = from supplier in SuppliersForProduct
                                  where !(productSupplierIds.Any(packagesupplier => packagesupplier == supplier.ProductSupplierId))
                                  select supplier;
@@ -117,67 +220,5 @@ namespace TravelExpertsDb.Forms
             return suppliersRemaining;
         }
 
-        private void btnRemove_Click(object sender, EventArgs e)
-        {
-            foreach (ListViewItem item in lvPackageProductSuppliers.SelectedItems)
-            {
-                lvPackageProductSuppliers.Items.Remove(item);
-            }
-
-            //refresh the datasource for the suppliers attached to the product
-            List<ProductSupplier> remainingSuppliers = RemainingSuppliersforProduct();
-
-            if (remainingSuppliers.Count != 0)
-            {
-                lbSuppliers.DataSource = remainingSuppliers;//what are u doing here??; redundant code
-                btnAdd.Enabled = true;
-            }
-            else
-            {
-                lbSuppliers.DataSource = remainingSuppliers;//what are u doing here??; redundant code
-                btnAdd.Enabled = false;
-            }
-
-        }
-
-        private void BtnAccept_Click(object sender, EventArgs e)
-        {
-            Package newPackage = new Package();
-
-            newPackage.PkgName = Convert.ToString(txtPackageName.Text);
-            newPackage.PkgStartDate = dtpStartDate.Value;
-            newPackage.PkgEndDate = dtpEndDate.Value;
-            newPackage.PkgDesc = Convert.ToString(txtDescription.Text);
-            newPackage.PkgBasePrice = Convert.ToDouble(txtBasePrice.Text);
-            newPackage.PkgAgencyCommission = Convert.ToDouble(txtCommission.Text);
-
-
-            if(PackageDB.AddNewPackage(newPackage))
-            {
-                MessageBox.Show("Package has been inserted into the database!", "Success");
-            }
-            else
-            {
-                MessageBox.Show("Error in the database", "Error");
-            }
-
-
-            foreach (ListViewItem item in lvPackageProductSuppliers.Items)
-            {
-                int newProductSupplierId = Convert.ToInt32(item.SubItems[2].Text);
-
-                if (PackageDB.AddNewProductSupplierToPackage(newProductSupplierId))
-                {
-                    
-                }
-                else
-                {
-                    MessageBox.Show("Error with this supplier", "Database Error");
-                }
-            }
-
-
-
-        }
     }
 }

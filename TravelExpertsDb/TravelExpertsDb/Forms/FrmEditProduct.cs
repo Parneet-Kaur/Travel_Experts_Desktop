@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TravelExpertsDb.Forms
+    //Ami Umeda, Callias Nguyen
+    //
+    //January 12, 2017
+    //
 {
     public partial class FrmEditProduct : MaterialForm
     {
@@ -39,17 +43,21 @@ namespace TravelExpertsDb.Forms
             txtNewProduct.Focus();//MATERIAL SKIN DOESNT LET YOU FOCUS
         }
 
+
+        //every time the product has changed the text will change with that associated product
         private void lbProduct_SelectedValueChanged(object sender, EventArgs e)
         {
             Product selectedProduct = (Product) lbProduct.SelectedItem;
             txtCurrentProductName.Text = selectedProduct.ProdName;
         }
 
+
+        //when we click save we are changing the product name
         private void btnSave_Click(object sender, EventArgs e)
         {
            Product editProduct = (Product)lbProduct.SelectedItem;
 
-            if (Validator.IsPresent(txtNewProduct))
+            if (Validator.IsPresent(txtNewProduct)) //if there is a name present pass through
             {
                 string newProductName = txtNewProduct.Text;
 
@@ -62,8 +70,7 @@ namespace TravelExpertsDb.Forms
             }
             else
             {
-                MessageBox.Show(editProduct.ProdName + " has been updated already. Please refresh the database", "Error");
-                DialogResult = DialogResult.Retry;
+             //do nothing... the messagebox will show up via the validator....
             }
         }
     }

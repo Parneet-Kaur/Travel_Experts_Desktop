@@ -38,8 +38,8 @@
             this.lblLogo.AutoSize = true;
             this.lblLogo.BackColor = System.Drawing.Color.White;
             this.lblLogo.Font = new System.Drawing.Font("Calibri", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLogo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblLogo.Location = new System.Drawing.Point(68, 84);
+            this.lblLogo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.lblLogo.Location = new System.Drawing.Point(246, 79);
             this.lblLogo.Name = "lblLogo";
             this.lblLogo.Size = new System.Drawing.Size(357, 59);
             this.lblLogo.TabIndex = 3;
@@ -65,7 +65,7 @@
             this.btnProductSuppliers.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnProductSuppliers.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProductSuppliers.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnProductSuppliers.Location = new System.Drawing.Point(110, 328);
+            this.btnProductSuppliers.Location = new System.Drawing.Point(477, 173);
             this.btnProductSuppliers.Name = "btnProductSuppliers";
             this.btnProductSuppliers.Size = new System.Drawing.Size(254, 114);
             this.btnProductSuppliers.TabIndex = 5;
@@ -77,15 +77,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 518);
+            this.ClientSize = new System.Drawing.Size(866, 368);
             this.Controls.Add(this.btnProductSuppliers);
             this.Controls.Add(this.btnPackages);
             this.Controls.Add(this.lblLogo);
+            this.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmLandingPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Welcome Back!";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmLandingPage_FormClosing);
             this.Load += new System.EventHandler(this.FrmLandingPage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

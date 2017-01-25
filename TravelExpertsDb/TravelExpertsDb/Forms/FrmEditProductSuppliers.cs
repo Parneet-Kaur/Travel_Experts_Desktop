@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TravelExpertsDb.Forms
-{
+{// Callias Nguyen
+    // Ami Umeda
     public partial class FrmEditProductSuppliers : MaterialForm
     {
         public FrmEditProductSuppliers()
@@ -32,13 +33,13 @@ namespace TravelExpertsDb.Forms
             lbCurrentSuppliers.DataSource = productsSupplier;//refresh the product's suppliers
 
             List<ProductSupplier> remainingProductSupplier = selectedProduct.GetRemainingSuppliers();
-            if (productsSupplier.Count != 0)
+            if (productsSupplier.Count != 0)// if this listbox is not empty
             {
                 lbAllSuppliers.DataSource = remainingProductSupplier; //refresh the all suppliers
                 btnRemove.Enabled = true;
             }
             else
-            {
+            {// if the listbox is empty we want to disable buttons so the user does not crash the program
                 lbAllSuppliers.DataSource = remainingProductSupplier;
                 btnRemove.Enabled = false;
             }

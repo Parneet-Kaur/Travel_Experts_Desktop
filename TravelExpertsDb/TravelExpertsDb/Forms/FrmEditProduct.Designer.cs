@@ -32,10 +32,10 @@
             this.btnCancel = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnSave = new MaterialSkin.Controls.MaterialRaisedButton();
             this.txtCurrentProductName = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.lblNewProductName = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.lblCurrentProductName = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.lbProduct = new System.Windows.Forms.ListBox();
-            this.lblEditProduct = new MaterialSkin.Controls.MaterialLabel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtNewProduct
@@ -51,6 +51,7 @@
             this.txtNewProduct.SelectionStart = 0;
             this.txtNewProduct.Size = new System.Drawing.Size(220, 23);
             this.txtNewProduct.TabIndex = 15;
+            this.txtNewProduct.Tag = "Product Name";
             this.txtNewProduct.UseSystemPasswordChar = false;
             // 
             // btnCancel
@@ -95,38 +96,6 @@
             this.txtCurrentProductName.TabIndex = 12;
             this.txtCurrentProductName.UseSystemPasswordChar = false;
             // 
-            // lblNewProductName
-            // 
-            this.lblNewProductName.Depth = 0;
-            this.lblNewProductName.Hint = "";
-            this.lblNewProductName.Location = new System.Drawing.Point(269, 164);
-            this.lblNewProductName.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblNewProductName.Name = "lblNewProductName";
-            this.lblNewProductName.PasswordChar = '\0';
-            this.lblNewProductName.SelectedText = "";
-            this.lblNewProductName.SelectionLength = 0;
-            this.lblNewProductName.SelectionStart = 0;
-            this.lblNewProductName.Size = new System.Drawing.Size(220, 23);
-            this.lblNewProductName.TabIndex = 11;
-            this.lblNewProductName.Text = "Change Product\'s Name To:";
-            this.lblNewProductName.UseSystemPasswordChar = false;
-            // 
-            // lblCurrentProductName
-            // 
-            this.lblCurrentProductName.Depth = 0;
-            this.lblCurrentProductName.Hint = "";
-            this.lblCurrentProductName.Location = new System.Drawing.Point(269, 79);
-            this.lblCurrentProductName.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblCurrentProductName.Name = "lblCurrentProductName";
-            this.lblCurrentProductName.PasswordChar = '\0';
-            this.lblCurrentProductName.SelectedText = "";
-            this.lblCurrentProductName.SelectionLength = 0;
-            this.lblCurrentProductName.SelectionStart = 0;
-            this.lblCurrentProductName.Size = new System.Drawing.Size(220, 23);
-            this.lblCurrentProductName.TabIndex = 10;
-            this.lblCurrentProductName.Text = "Current Product\'s Name:";
-            this.lblCurrentProductName.UseSystemPasswordChar = false;
-            // 
             // lbProduct
             // 
             this.lbProduct.FormattingEnabled = true;
@@ -136,32 +105,52 @@
             this.lbProduct.TabIndex = 9;
             this.lbProduct.SelectedValueChanged += new System.EventHandler(this.lbProduct_SelectedValueChanged);
             // 
-            // lblEditProduct
+            // label1
             // 
-            this.lblEditProduct.AutoSize = true;
-            this.lblEditProduct.Depth = 0;
-            this.lblEditProduct.Font = new System.Drawing.Font("Roboto", 11F);
-            this.lblEditProduct.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblEditProduct.Location = new System.Drawing.Point(8, 83);
-            this.lblEditProduct.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblEditProduct.Name = "lblEditProduct";
-            this.lblEditProduct.Size = new System.Drawing.Size(169, 19);
-            this.lblEditProduct.TabIndex = 8;
-            this.lblEditProduct.Text = "Choose Product to Edit:";
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(266, 96);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(195, 18);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Current Product\'s Name:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(266, 181);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(221, 18);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Change Product\'s Name To:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(9, 84);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(190, 18);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "Choose Product to Edit:";
             // 
             // FrmEditProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(540, 307);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtNewProduct);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtCurrentProductName);
-            this.Controls.Add(this.lblNewProductName);
-            this.Controls.Add(this.lblCurrentProductName);
             this.Controls.Add(this.lbProduct);
-            this.Controls.Add(this.lblEditProduct);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmEditProduct";
@@ -180,9 +169,9 @@
         private MaterialSkin.Controls.MaterialRaisedButton btnCancel;
         private MaterialSkin.Controls.MaterialRaisedButton btnSave;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtCurrentProductName;
-        private MaterialSkin.Controls.MaterialSingleLineTextField lblNewProductName;
-        private MaterialSkin.Controls.MaterialSingleLineTextField lblCurrentProductName;
         private System.Windows.Forms.ListBox lbProduct;
-        private MaterialSkin.Controls.MaterialLabel lblEditProduct;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

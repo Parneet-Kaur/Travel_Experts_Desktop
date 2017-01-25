@@ -38,8 +38,8 @@
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.lvCurrentSuppliers = new System.Windows.Forms.ListView();
-            this.SupID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SupName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.SupID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // btnOk
@@ -94,6 +94,7 @@
             this.txtNewProduct.SelectionStart = 0;
             this.txtNewProduct.Size = new System.Drawing.Size(229, 23);
             this.txtNewProduct.TabIndex = 4;
+            this.txtNewProduct.Tag = "Product Name";
             this.txtNewProduct.UseSystemPasswordChar = false;
             // 
             // lbAllSuppliers
@@ -168,14 +169,14 @@
             this.lvCurrentSuppliers.UseCompatibleStateImageBehavior = false;
             this.lvCurrentSuppliers.View = System.Windows.Forms.View.Details;
             // 
-            // SupID
-            // 
-            this.SupID.Width = 0;
-            // 
             // SupName
             // 
             this.SupName.Text = "Supplier Name";
             this.SupName.Width = 173;
+            // 
+            // SupID
+            // 
+            this.SupID.Width = 0;
             // 
             // FrmNewProduct
             // 
@@ -197,6 +198,7 @@
             this.Name = "FrmNewProduct";
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Tag = "Product Name";
             this.Text = "New Product";
             this.Load += new System.EventHandler(this.FrmNewProduct_Load);
             this.ResumeLayout(false);

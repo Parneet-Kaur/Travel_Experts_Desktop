@@ -65,19 +65,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddPackage.cs">
+    <Compile Include="Forms\AddPackage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddPackage.Designer.cs">
+    <Compile Include="Forms\AddPackage.Designer.cs">
       <DependentUpon>AddPackage.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataAccess.cs" />
-    <Compile Include="DataAccessLogin.cs" />
+    <Compile Include="Data\DataAccess.cs" />
+    <Compile Include="Data\DataAccessLogin.cs" />
     <Compile Include="Data\PackageDB.cs" />
-    <Compile Include="DefaultPackages.cs">
+    <Compile Include="Forms\DefaultPackages.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DefaultPackages.Designer.cs">
+    <Compile Include="Forms\DefaultPackages.Designer.cs">
       <DependentUpon>DefaultPackages.cs</DependentUpon>
     </Compile>
     <Compile Include="Entity\Package.cs" />
@@ -129,34 +129,34 @@
     <Compile Include="Forms\FrmProductSupplierHome.Designer.cs">
       <DependentUpon>FrmProductSupplierHome.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="Forms\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
+    <Compile Include="Forms\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="PackageProductDetails.cs" />
-    <Compile Include="Packages.cs" />
-    <Compile Include="PackagesDb.cs" />
+    <Compile Include="Entity\PackageProductDetails.cs" />
+    <Compile Include="Entity\Packages.cs" />
+    <Compile Include="Data\PackagesDb.cs" />
     <Compile Include="Entity\Product.cs" />
     <Compile Include="Data\ProductDB.cs" />
     <Compile Include="Entity\ProductSupplier.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\SupplierDB.cs" />
-    <Compile Include="Supplier.cs" />
-    <Compile Include="UpdatePackage.cs">
+    <Compile Include="Entity\Supplier.cs" />
+    <Compile Include="Forms\UpdatePackage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UpdatePackage.Designer.cs">
+    <Compile Include="Forms\UpdatePackage.Designer.cs">
       <DependentUpon>UpdatePackage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Validator.cs" />
-    <Compile Include="ValidatorPackages.cs" />
-    <EmbeddedResource Include="AddPackage.resx">
+    <Compile Include="Validators\Validator.cs" />
+    <Compile Include="Validators\ValidatorPackages.cs" />
+    <EmbeddedResource Include="Forms\AddPackage.resx">
       <DependentUpon>AddPackage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DefaultPackages.resx">
+    <EmbeddedResource Include="Forms\DefaultPackages.resx">
       <DependentUpon>DefaultPackages.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmAddPackage.resx">
@@ -183,7 +183,7 @@
     <EmbeddedResource Include="Forms\FrmProductSupplierHome.resx">
       <DependentUpon>FrmProductSupplierHome.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
+    <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -195,7 +195,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UpdatePackage.resx">
+    <EmbeddedResource Include="Forms\UpdatePackage.resx">
       <DependentUpon>UpdatePackage.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

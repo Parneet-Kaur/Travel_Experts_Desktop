@@ -17,7 +17,7 @@ namespace TravelExpertsDb
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DefaultPackages());
+            Application.Run(new FrmLandingPage());
         }
     }
 }

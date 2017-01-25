@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TravelExpertsDb.Forms
-{
+{//Callias Nguyen & Abel Suraces
+
     public partial class FrmNewProduct : MaterialForm
     {
         public FrmNewProduct()
@@ -25,7 +26,7 @@ namespace TravelExpertsDb.Forms
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if(Validator.IsPresent(txtNewProduct))
+            if(Validator.IsPresent(txtNewProduct)) //if the txt has a value then continue on 
             {
                 string newProduct = txtNewProduct.Text;
                 List<Product> allProducts = ProductDB.GetProducts();
@@ -57,7 +58,7 @@ namespace TravelExpertsDb.Forms
 
             foreach (Product product in allProducts)// You can change to regular expression to grab all the instances of the product
             {
-                if (product.ProdName == newProduct)
+                if (product.ProdName.ToUpper() == newProduct.ToUpper())
                 {
                     
                     return false;
@@ -69,7 +70,7 @@ namespace TravelExpertsDb.Forms
 
         private void FrmNewProduct_Load(object sender, EventArgs e)
         {
-
+            // on load we are refreshing the datasource
             lbAllSuppliers.DataSource = SupplierDB.GetAllSuppliers();
 
 
@@ -79,6 +80,8 @@ namespace TravelExpertsDb.Forms
         {
             ProductSupplier supplier = (ProductSupplier)lbAllSuppliers.SelectedItem;
 
+            //grabbing the supplier id and supplier name to add to a listview
+            //this listview will be the suppliers that you will add to the new product 
             int newSupplierID = supplier.SupplierId;
             string newSupplierName = supplier.SupName;
 
@@ -89,38 +92,15 @@ namespace TravelExpertsDb.Forms
             lvCurrentSuppliers.Items.Add(ListViewItem);
 
 
-            //Method for having an interactive back and forth suppliers
-            List<ProductSupplier> remainingSuppliers = SupplierDB.GetAllSuppliers();
-
-            List<int> SupplierIds = new List<int>();
-
-            foreach (ListViewItem item in lvCurrentSuppliers.Items)
-            {
-                int SupplierId = Convert.ToInt32(item.SubItems[1].Text);
-               SupplierIds.Add(SupplierId); // adding this to the list of suppliers for the product
-
-            }
-
-            var suppliersNotIn = from supplierid in remainingSuppliers
-                                 where !(SupplierIds.Any(newsupplier => newsupplier == supplierid.SupplierId))
-                                 select supplierid;
-
-            List<ProductSupplier> suppliersRemaining = new List<ProductSupplier>();
-            foreach (var supplierid in suppliersNotIn)
-            {
-                suppliersRemaining.Add(supplierid);
-            }
+            // refresh the suppliers datasource
+            lbAllSuppliers.DataSource = GrabRemainingSupplier();
 
 
-            lbAllSuppliers.DataSource = suppliersRemaining;
+        }//BtnAdd Click
 
 
 
-
-
-
-        }
-
+        //removing ans item from the supplier
         private void btnRemove_Click(object sender, EventArgs e)
         {
             foreach (ListViewItem item in lvCurrentSuppliers.SelectedItems)
@@ -142,6 +122,27 @@ namespace TravelExpertsDb.Forms
 
             }
 
+            //refresh the datasource using the method of remaining suppliers
+            lbAllSuppliers.DataSource = GrabRemainingSupplier();
+        }
+
+
+
+        //this is a method for refreshing the datasource so there isn't any duplicates
+        private List<ProductSupplier> GrabRemainingSupplier()
+        {
+            //Method for having an interactive back and forth suppliers
+            List<ProductSupplier> remainingSuppliers = SupplierDB.GetAllSuppliers();
+
+            List<int> SupplierIds = new List<int>();
+
+            foreach (ListViewItem item in lvCurrentSuppliers.Items)
+            {
+                int SupplierId = Convert.ToInt32(item.SubItems[1].Text);
+                SupplierIds.Add(SupplierId); // adding this to the list of suppliers for the product
+
+            }
+
             var suppliersNotIn = from supplierid in remainingSuppliers
                                  where !(SupplierIds.Any(newsupplier => newsupplier == supplierid.SupplierId))
                                  select supplierid;
@@ -151,10 +152,11 @@ namespace TravelExpertsDb.Forms
             {
                 suppliersRemaining.Add(supplierid);
             }
+            return suppliersRemaining;
 
-
-            lbAllSuppliers.DataSource = suppliersRemaining;
         }
+
+
     }//FormProduct
     }//NameSpace
 
