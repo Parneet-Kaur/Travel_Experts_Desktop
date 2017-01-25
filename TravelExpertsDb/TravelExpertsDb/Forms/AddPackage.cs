@@ -88,96 +88,83 @@ namespace TravelExpertsDb
 
         private void btnAddPackage_Click(object sender, EventArgs e)
         {
-            //Packages Package = new Packages();
-            //if (ValidatorPackages.isEmpty(txtPackageName))
-            //{
-            //    MessageBox.Show("Please provide a name for the package.");
-            //}
+            Packages Package = new Packages();
+            if (ValidatorPackages.isEmpty(txtPackageName))
+            {
+                MessageBox.Show("Please provide a name for the package.");
+            }
 
 
-            //Package.PkgDesc = rtbPkgDesc.Text;
-            ////to validate base price and assign it to package
-            //if (ValidatorPackages.isEmpty(txtPkgBasePrice))
-            //{
-            //    MessageBox.Show("Base Price can not be empty.");
-            //}
-            //else
-            //{
-            //    Package.PkgBasePrice = ValidatorPackages.isDecimal(txtPkgBasePrice);
-            //}
-            //decimal temp;
-            //if (Decimal.TryParse(txtPkgBasePrice.Text, out temp))
-            //{
-            //    Package.PkgAgencyCommission = Convert.ToDecimal(temp);
+            Package.PkgDesc = rtbPkgDesc.Text;
+            //to validate base price and assign it to package
+            if (ValidatorPackages.isEmpty(txtPkgBasePrice))
+            {
+                MessageBox.Show("Base Price can not be empty.");
+            }
+            else
+            {
+                Package.PkgBasePrice = ValidatorPackages.isDecimal(txtPkgBasePrice);
+            }
+            decimal temp;
+            if (Decimal.TryParse(txtPkgBasePrice.Text, out temp))
+            {
+                Package.PkgAgencyCommission = Convert.ToDecimal(temp);
 
-            //}
-            //else
-            //{
-            //    Package.PkgAgencyCommission = null;
-            //}
-
-
+            }
+            else
+            {
+                Package.PkgAgencyCommission = null;
+            }
 
 
-            //if (lvPackageDetails.SelectedItems == null)
-            //{
 
 
-            //    int success = PackagesDb.AddPackage(Package);
-            //    if (success >= 1)
-            //    {
-            //        MessageBox.Show(" This package was successfully added");
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show(" Package could not be added. Please contact support.");
-            //    }
-            //}
-            //else
-            //{
-            //    int success = PackagesDb.AddPackage(Package);
+            if (PackagesDb.AddPackage(Package) >= 1)
+                 {
+                    MessageBox.Show("This package was successfully added");
+                   }             
 
-            //    if (success == 1)
-            //    {
-            //        foreach (ListViewItem item in lvSelectProductSupplier.Items)
-            //        {
-            //            int psi = Convert.ToInt16(item.SubItems[2].Text);
-            //            int result = PackagesDb.AddPackageDetails(psi);
+               else if (PackagesDb.AddPackage(Package) == 1)
+                {
+                    foreach (ListViewItem item in lvSelectProductSupplier.Items)
+                    {
+                        int psi = Convert.ToInt16(item.SubItems[2].Text);
+                        int result = PackagesDb.AddPackageDetails(psi);
 
-            //            if (result >= 1)
-            //            {
-            //                // we let foreach run for all items before displaying success message
-            //            }
-            //            else
-            //            {
-            //                MessageBox.Show("The package was successfully added but an error was encountered while entering package details.");
-            //            }
-            //        }//end of foreach
-            //        MessageBox.Show(" This package was successfully added with all its details");
+                        if (result >= 1)
+                        {
+                            // we let foreach run for all items before displaying success message
+                        }
+                        else
+                        {
+                            MessageBox.Show("The package was successfully added but an error was encountered while entering package details.");
+                        }
+                    }//end of foreach
+                    MessageBox.Show(" This package was successfully added with all its details");
 
-            //    }
-            //    //else
-            //    //{
-            //    //    MessageBox.Show(" Package could not be added. Please contact support.");
-            //    //}
-            //    //populate listview for products
-            //    lvPackageDetails.Items.Clear();
-            //    List<PackageProductDetails> ppd = new List<PackageProductDetails>();
+                }
+                //else
+                //{
+                //    MessageBox.Show(" Package could not be added. Please contact support.");
+                //}
+                //populate listview for products
+          
+                List<PackageProductDetails> ppd = new List<PackageProductDetails>();
 
-            //    foreach (ListViewItem item in lvSelectProductSupplier.Items)
-            //    {
-            //        //  lvPackageDetails.Items.Add(item);//generating exception here
-            //    }
+                foreach (ListViewItem item in lvSelectProductSupplier.Items)
+                {
+                    //  lvPackageDetails.Items.Add(item);//generating exception here
+                }
 
-            //    lvSelectProductSupplier.Items.Clear();
-            //}
-
-
-        }
+                lvSelectProductSupplier.Items.Clear();
+            }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            Close();
+
         }
     }
-}
+
+
+    }
+

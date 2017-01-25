@@ -10,32 +10,30 @@ namespace TravelExpertsDb
 {
      class DataAccessLogin
     {
-       
+       //Parneet Kaur
                       
+
+            //validating the login page to confirm if the user exists
         public bool validateCredentials(string user,string password)
         {
 
-            //string connectionString = "Data Source=ICTVM-IVMOQ3HR1\\SQLEXPRESS;" +
-            //                          "Database=TravelExperts;" +
-            //                          "Integrated Security=True";
-
-
-            //string connectionString = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\TravelExperts.mdf;Integrated Security = True; Connect Timeout = 30";
-
-            //SqlConnection connection = new SqlConnection(connectionString);
 
 
             SqlConnection connection = DataAccess.getConnection();
 
+            //just a statement to confirm if the agent has a username and password... being the agtBustPhone
+            string selectStatement = "Select * from agents where agentid = @User AND  AgtBusPhone = @Password ";
 
+            
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@User", user);//security protection
+            selectCommand.Parameters.AddWithValue("@Password", password); //security protection
             try
             {
                 connection.Open();
 
-
-                SqlCommand com = new SqlCommand("Select AgtBusPhone from agents where agentid=" + user, connection);
-                SqlDataReader r = com.ExecuteReader();
-                //bool result = r.Read();//bug fix; doesn't work without this
+                SqlDataReader r = selectCommand.ExecuteReader(); //executing the reader to work....
+           
 
                 if (r.Read())// if reader returns false then the password is incorrect
                 {
@@ -46,12 +44,7 @@ namespace TravelExpertsDb
                 {
                     return false;
                 }
-                //if (r[0].ToString() != password)
-                //{
-
-                //    return false;
-                //}
-                //     return true;
+            
             }
             catch (SqlException ex)
             {

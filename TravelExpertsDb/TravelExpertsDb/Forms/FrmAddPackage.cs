@@ -12,7 +12,8 @@ using TravelExpertsDb.Data;
 using TravelExpertsDb.Entity;
 
 namespace TravelExpertsDb.Forms
-{// Parneet
+{// Parneet Kaur 
+//Callias Nguyen 
 
     public partial class FrmAddPackage : MaterialForm
     {
@@ -156,7 +157,7 @@ namespace TravelExpertsDb.Forms
         {
             if (ValidData())//validating all text fields
             {
-
+                //putting the package information into the database here... but first we are creating a new package
                 Package newPackage = new Package();
 
                 newPackage.PkgName = Convert.ToString(txtPackageName.Text);
@@ -196,7 +197,7 @@ namespace TravelExpertsDb.Forms
 
         }//btnaccept
 
-
+        //putting all the validators into a single method... so it is easy to read up top
          private bool ValidData()
             {
                 return
