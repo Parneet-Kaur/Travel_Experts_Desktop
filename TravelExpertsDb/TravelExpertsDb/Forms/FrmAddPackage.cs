@@ -91,39 +91,6 @@ namespace TravelExpertsDb.Forms
 
 
 
-        //A method to grab a list of all the suppliers associated with the product EXCLUDING the ones you
-        //want to add to the package
-        private List<ProductSupplier> RemainingSuppliersforProduct()
-       {
-            //Grabbing the Product class to grab its suppliers
-            Product selectedProduct = (Product)cboProduct.SelectedItem;
-
-            //grab a list of the suppliers associated for that product
-            List<ProductSupplier> SuppliersForProduct = ProductDB.GetProductSuppliers(selectedProduct);
-            //grab a List of listview items (these are items we want for this package)
-            //that we do not want to contain in the suppliers attached to a product (Using Linq)
-            List<int> productSupplierIds = new List<int>();
-
-            foreach (ListViewItem item in lvPackageProductSuppliers.Items)
-            {
-                int productSupplierId = Convert.ToInt32(item.SubItems[2].Text);
-                productSupplierIds.Add(productSupplierId); // adding this to the list of suppliers for the product
-
-            }
-
-            var suppliersNotIn = from supplier in SuppliersForProduct
-                                 where !(productSupplierIds.Any(packagesupplier => packagesupplier == supplier.ProductSupplierId))
-                                 select supplier;
-
-            List<ProductSupplier> suppliersRemaining = new List<ProductSupplier>();//second list for keeping track of remaining supplier  
-            foreach (var supplier in suppliersNotIn)
-            {
-                suppliersRemaining.Add(supplier);
-            }
-
-            return suppliersRemaining;
-        }
-
 
 
 
@@ -167,7 +134,7 @@ namespace TravelExpertsDb.Forms
                 newPackage.PkgBasePrice = Convert.ToDouble(txtBasePrice.Text);
                 newPackage.PkgAgencyCommission = Convert.ToDouble(txtCommission.Text);
 
-
+                //true or false for the new package adding
                 if (PackageDB.AddNewPackage(newPackage))
                 {
                     MessageBox.Show("Package has been inserted into the database!", "Success");
@@ -177,7 +144,8 @@ namespace TravelExpertsDb.Forms
                     MessageBox.Show("Error in the database", "Error");
                 }
 
-
+                //once you create the new package you want to loop around the listview to grab the productsupplierid so you 
+                //can add the productsupplier with the package into the dtabases
                 foreach (ListViewItem item in lvPackageProductSuppliers.Items)
                 {
                     int newProductSupplierId = Convert.ToInt32(item.SubItems[2].Text);
@@ -214,6 +182,43 @@ namespace TravelExpertsDb.Forms
                  Validator.CommissionBasePriceCheck(Convert.ToDecimal(txtBasePrice.Text), Convert.ToDecimal(txtCommission.Text));
 
             }
-    
+
+
+
+
+        //A method to grab a list of all the suppliers associated with the product EXCLUDING the ones you
+        //want to add to the package
+        private List<ProductSupplier> RemainingSuppliersforProduct()
+        {
+            //Grabbing the Product class to grab its suppliers
+            Product selectedProduct = (Product)cboProduct.SelectedItem;
+
+            //grab a list of the suppliers associated for that product
+            List<ProductSupplier> SuppliersForProduct = ProductDB.GetProductSuppliers(selectedProduct);
+            //grab a List of listview items (these are items we want for this package)
+            //that we do not want to contain in the suppliers attached to a product (Using Linq)
+            List<int> productSupplierIds = new List<int>();
+
+            foreach (ListViewItem item in lvPackageProductSuppliers.Items)
+            {
+                int productSupplierId = Convert.ToInt32(item.SubItems[2].Text);
+                productSupplierIds.Add(productSupplierId); // adding this to the list of suppliers for the product
+
+            }
+
+            //using linq to remove any suppliers that are selected in package, and removing them as a selection choice
+            var suppliersNotIn = from supplier in SuppliersForProduct
+                                 where !(productSupplierIds.Any(packagesupplier => packagesupplier == supplier.ProductSupplierId))
+                                 select supplier;
+
+            List<ProductSupplier> suppliersRemaining = new List<ProductSupplier>();//second list for keeping track of remaining supplier  
+            foreach (var supplier in suppliersNotIn)
+            {
+                suppliersRemaining.Add(supplier);
+            }
+
+            return suppliersRemaining;
+        }
+
     }
 }

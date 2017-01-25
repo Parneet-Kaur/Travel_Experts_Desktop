@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TravelExpertsDb.Forms
-{
+{//Callias Nguyen & Abel Suraces
+
     public partial class FrmNewProduct : MaterialForm
     {
         public FrmNewProduct()
@@ -25,7 +26,7 @@ namespace TravelExpertsDb.Forms
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if(Validator.IsPresent(txtNewProduct))
+            if(Validator.IsPresent(txtNewProduct)) //if the txt has a value then continue on 
             {
                 string newProduct = txtNewProduct.Text;
                 List<Product> allProducts = ProductDB.GetProducts();
@@ -99,7 +100,7 @@ namespace TravelExpertsDb.Forms
 
 
 
-
+        //removing ans item from the supplier
         private void btnRemove_Click(object sender, EventArgs e)
         {
             foreach (ListViewItem item in lvCurrentSuppliers.SelectedItems)
