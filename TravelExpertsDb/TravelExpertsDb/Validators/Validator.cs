@@ -124,7 +124,7 @@ namespace TravelExpertsDb
 
         public static bool ValidDate(DateTime StartDate, DateTime EndDate)
         {
-            if (EndDate < StartDate)
+            if (EndDate.Date < StartDate.Date)
             {
                 MessageBox.Show("End date has to be after the start date.", "Input Error");
                 return false;

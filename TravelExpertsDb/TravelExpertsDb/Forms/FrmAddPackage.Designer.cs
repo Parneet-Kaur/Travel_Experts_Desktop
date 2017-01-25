@@ -332,6 +332,7 @@
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Size = new System.Drawing.Size(173, 20);
             this.dtpStartDate.TabIndex = 22;
+            this.dtpStartDate.Value = new System.DateTime(2017, 1, 24, 0, 0, 0, 0);
             // 
             // dtpEndDate
             // 
@@ -339,6 +340,7 @@
             this.dtpEndDate.Name = "dtpEndDate";
             this.dtpEndDate.Size = new System.Drawing.Size(173, 20);
             this.dtpEndDate.TabIndex = 23;
+            this.dtpEndDate.Value = new System.DateTime(2017, 1, 24, 0, 0, 0, 0);
             // 
             // lblPackageDetails
             // 

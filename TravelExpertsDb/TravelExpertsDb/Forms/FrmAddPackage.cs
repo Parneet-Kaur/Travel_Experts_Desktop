@@ -161,7 +161,7 @@ namespace TravelExpertsDb.Forms
 
                 newPackage.PkgName = Convert.ToString(txtPackageName.Text);
                 newPackage.PkgStartDate = dtpStartDate.Value;
-                newPackage.PkgEndDate = dtpEndDate.Value;
+                newPackage.PkgEndDate = Convert.ToDateTime(dtpEndDate.Text);
                 newPackage.PkgDesc = Convert.ToString(txtDescription.Text);
                 newPackage.PkgBasePrice = Convert.ToDouble(txtBasePrice.Text);
                 newPackage.PkgAgencyCommission = Convert.ToDouble(txtCommission.Text);
