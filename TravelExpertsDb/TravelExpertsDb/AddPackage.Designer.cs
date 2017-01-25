@@ -37,8 +37,6 @@
             this.txtPackageName = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
             this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
-            this.ckbStartDate = new System.Windows.Forms.CheckBox();
-            this.ckbEndDate = new System.Windows.Forms.CheckBox();
             this.rtbPkgDesc = new System.Windows.Forms.RichTextBox();
             this.txtPkgBasePrice = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.txtAgencyCommision = new MaterialSkin.Controls.MaterialSingleLineTextField();
@@ -164,26 +162,6 @@
             this.dtpEndDate.Name = "dtpEndDate";
             this.dtpEndDate.Size = new System.Drawing.Size(200, 20);
             this.dtpEndDate.TabIndex = 8;
-            // 
-            // ckbStartDate
-            // 
-            this.ckbStartDate.AutoSize = true;
-            this.ckbStartDate.Location = new System.Drawing.Point(215, 181);
-            this.ckbStartDate.Name = "ckbStartDate";
-            this.ckbStartDate.Size = new System.Drawing.Size(163, 17);
-            this.ckbStartDate.TabIndex = 9;
-            this.ckbStartDate.Text = "Haven\'t decided the date yet";
-            this.ckbStartDate.UseVisualStyleBackColor = true;
-            // 
-            // ckbEndDate
-            // 
-            this.ckbEndDate.AutoSize = true;
-            this.ckbEndDate.Location = new System.Drawing.Point(215, 238);
-            this.ckbEndDate.Name = "ckbEndDate";
-            this.ckbEndDate.Size = new System.Drawing.Size(166, 17);
-            this.ckbEndDate.TabIndex = 10;
-            this.ckbEndDate.Text = "Haven\'t decided the date yet.";
-            this.ckbEndDate.UseVisualStyleBackColor = true;
             // 
             // rtbPkgDesc
             // 
@@ -362,8 +340,6 @@
             this.Controls.Add(this.txtAgencyCommision);
             this.Controls.Add(this.txtPkgBasePrice);
             this.Controls.Add(this.rtbPkgDesc);
-            this.Controls.Add(this.ckbEndDate);
-            this.Controls.Add(this.ckbStartDate);
             this.Controls.Add(this.dtpEndDate);
             this.Controls.Add(this.dtpStartDate);
             this.Controls.Add(this.txtPackageName);
@@ -392,8 +368,6 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField txtPackageName;
         private System.Windows.Forms.DateTimePicker dtpStartDate;
         private System.Windows.Forms.DateTimePicker dtpEndDate;
-        private System.Windows.Forms.CheckBox ckbStartDate;
-        private System.Windows.Forms.CheckBox ckbEndDate;
         private System.Windows.Forms.RichTextBox rtbPkgDesc;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtPkgBasePrice;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtAgencyCommision;

@@ -37,11 +37,11 @@
             // btnAddPackage
             // 
             this.btnAddPackage.Depth = 0;
-            this.btnAddPackage.Location = new System.Drawing.Point(64, 243);
+            this.btnAddPackage.Location = new System.Drawing.Point(155, 311);
             this.btnAddPackage.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAddPackage.Name = "btnAddPackage";
             this.btnAddPackage.Primary = true;
-            this.btnAddPackage.Size = new System.Drawing.Size(138, 65);
+            this.btnAddPackage.Size = new System.Drawing.Size(138, 49);
             this.btnAddPackage.TabIndex = 0;
             this.btnAddPackage.Text = "Add Package";
             this.btnAddPackage.UseVisualStyleBackColor = true;
@@ -50,11 +50,11 @@
             // btnUpdatePackage
             // 
             this.btnUpdatePackage.Depth = 0;
-            this.btnUpdatePackage.Location = new System.Drawing.Point(333, 243);
+            this.btnUpdatePackage.Location = new System.Drawing.Point(390, 311);
             this.btnUpdatePackage.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnUpdatePackage.Name = "btnUpdatePackage";
             this.btnUpdatePackage.Primary = true;
-            this.btnUpdatePackage.Size = new System.Drawing.Size(138, 65);
+            this.btnUpdatePackage.Size = new System.Drawing.Size(138, 49);
             this.btnUpdatePackage.TabIndex = 1;
             this.btnUpdatePackage.Text = "Update Package";
             this.btnUpdatePackage.UseVisualStyleBackColor = true;
@@ -68,14 +68,14 @@
             this.dtgPackages.Location = new System.Drawing.Point(44, 81);
             this.dtgPackages.Name = "dtgPackages";
             this.dtgPackages.ReadOnly = true;
-            this.dtgPackages.Size = new System.Drawing.Size(460, 150);
+            this.dtgPackages.Size = new System.Drawing.Size(631, 150);
             this.dtgPackages.TabIndex = 2;
             // 
             // DefaultPackages
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(546, 331);
+            this.ClientSize = new System.Drawing.Size(687, 403);
             this.Controls.Add(this.dtgPackages);
             this.Controls.Add(this.btnUpdatePackage);
             this.Controls.Add(this.btnAddPackage);

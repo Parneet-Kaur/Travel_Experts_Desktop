@@ -10,12 +10,65 @@ namespace TravelExpertsDb
 {
     class ValidatorPackages
     {
+        public static bool IsValidData(MaterialSingleLineTextField tb,
+            DateTime start,DateTime end, MaterialSingleLineTextField basePrice) {
+
+            //if (!isEmpty(tb) && IsDateProvided(start) && IsDateProvided(end) && validateDates(start, end) && isEmpty(basePrice))
+            //{
+            //    return true;
+            //}
+            //else {
+            //    return false;
+            //}
+            if (!isEmpty(tb)) {
+                if (IsDateProvided(start))
+                {
+                    if (IsDateProvided(end))
+                    {
+                        if (validateDates(start, end))
+                        {
+                            if (!isEmpty(basePrice))
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                        else
+                        {
+
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else {
+                    return false;
+                }
+            }
+            else {
+
+                return false;
+            }
+            
+        }
+
+
+      
+            
         public static bool validateDates(DateTime startDate,DateTime endDate) {
 
             if (startDate<endDate) {
+
                 return true;
             }
             else {
+                MessageBox.Show("End date must be greater than start date.");
                 return false;
             }
         }
@@ -44,5 +97,16 @@ namespace TravelExpertsDb
                 return price;
             }
         }
-    }
+
+        public static bool IsDateProvided(DateTime date){
+            if (date.Date < DateTime.Now.Date)
+            {
+                MessageBox.Show("Please provide a date in future.");
+                return false;
+            }
+            else {
+                return true;
+            }
+         }
+    }//end of class
 }

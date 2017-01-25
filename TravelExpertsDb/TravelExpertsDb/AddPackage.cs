@@ -35,6 +35,7 @@ namespace TravelExpertsDb
                 // lbSuppliers.ValueMember = "SupplierId"; 
             }
 
+
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -88,104 +89,68 @@ namespace TravelExpertsDb
 
         private void btnAddPackage_Click(object sender, EventArgs e)
         {
+            DateTime tempStartDate;
+            DateTime tempEndDate;
             Packages Package = new Packages();
-            if (ValidatorPackages.isEmpty(txtPackageName))
-            {
-                MessageBox.Show("Please provide a name for the package.");
+                    if(Package==null){
+                MessageBox.Show("Please add data first.");
             }
-            else {
-                Package.PkgName = txtPackageName.Text;
-            }
-            if (ckbStartDate.Checked)
-            {
-                Package.PkgStartDate = DateTime.MinValue;
-            }
-            else
-            {
-                Package.PkgStartDate = dtpStartDate.Value;
-            }
-            if (ckbEndDate.Checked)
-            {
-                Package.PkgEndDate = DateTime.MinValue;
-            }
-            else
-            {
-                Package.PkgEndDate = dtpStartDate.Value;
-            }
-            Package.PkgDesc = rtbPkgDesc.Text;
-            //to validate base price and assign it to package
-            if (ValidatorPackages.isEmpty(txtPkgBasePrice))
-            {
-                MessageBox.Show("Base Price can not be empty.");
-            }
-            else
-            {
+
+            if (ValidatorPackages.IsValidData(txtPackageName,dtpStartDate.Value,dtpEndDate.Value,txtPkgBasePrice)) {
+                MessageBox.Show("take a deepbreath");
                 Package.PkgBasePrice = ValidatorPackages.isDecimal(txtPkgBasePrice);
-            }
-            decimal temp;
-            if (Decimal.TryParse(txtPkgBasePrice.Text,out temp))
-            {
-                Package.PkgAgencyCommission = Convert.ToDecimal(temp);
+                Package.PkgBasePrice = ValidatorPackages.isDecimal(txtAgencyCommision);
+                Package.PkgName = txtPackageName.Text;
+                Package.PkgStartDate = dtpStartDate.Value;
+                Package.PkgEndDate = dtpEndDate.Value;
+                Package.PkgDesc = rtbPkgDesc.Text;
 
-            }
-            else
-            {
-                Package.PkgAgencyCommission = null;
-            }
-            
-
-
-
-            if (lvPackageDetails.SelectedItems == null)
-            {
-                
-
-                int success = PackagesDb.AddPackage(Package);
-                if (success >= 1)
-                {
-                    MessageBox.Show(" This package was successfully added");
-                }
-                else {
-                    MessageBox.Show(" Package could not be added. Please contact support.");
-                }
-            }
-            else {
-                int success = PackagesDb.AddPackage(Package);
-               
-                if (success==1)
-                {
-                    foreach (ListViewItem item in lvSelectProductSupplier.Items)
+                    if (lvPackageDetails.SelectedItems == null)
                     {
-                        int psi = Convert.ToInt16(item.SubItems[2].Text);
-                        int result = PackagesDb.AddPackageDetails(psi);
-
-                        if (result >= 1) {
-                           // we let foreach run for all items before displaying success message
+                   
+                        int success = PackagesDb.AddPackage(Package);
+                        if (success >= 1)
+                        {
+                            MessageBox.Show(" This package was successfully added");
                         }
                         else
                         {
-                            MessageBox.Show("The package was successfully added but an error was encountered while entering package details.");
+                            MessageBox.Show(" Package could not be added. Please contact support.");
                         }
-                    }//end of foreach
-                    MessageBox.Show(" This package was successfully added with all its details");
+                    }// endofinnerif
 
-                }
-                //else
-                //{
-                //    MessageBox.Show(" Package could not be added. Please contact support.");
-                //}
-                //populate listview for products
-                lvPackageDetails.Items.Clear();
-                List<PackageProductDetails> ppd = new List<PackageProductDetails>();
+                if (lvPackageDetails.SelectedItems != null) // if the user  wants to add products and suppliers as well                
+                {
+                    int success = PackagesDb.AddPackage(Package);
 
-                foreach (ListViewItem item in lvSelectProductSupplier.Items) {
-                  //  lvPackageDetails.Items.Add(item);//generating exception here
-                }
+                    if (success == 1)
+                    {
+                        foreach (ListViewItem item in lvSelectProductSupplier.Items)
+                        {
+                            int psi = Convert.ToInt16(item.SubItems[2].Text);
+                            int result = PackagesDb.AddPackageDetails(psi);
 
-                lvSelectProductSupplier.Items.Clear();
-            }
-            
+                            if (result >= 1)
+                            {
+                                // we let foreach run for all items before displaying success message
+                                MessageBox.Show(" This package was successfully added with all its details");
+                            }
+                            else
+                            {
+                                MessageBox.Show("The package was successfully added but an error was encountered while entering package details.");
+                            }
+                        }//end of foreach
 
-        }
+                    } //end of if             
+
+                }// endofinnerelse
+               
+               
+                
+            }// end of is valid data
+
+
+        }//endof button click
+        
     }
 }
