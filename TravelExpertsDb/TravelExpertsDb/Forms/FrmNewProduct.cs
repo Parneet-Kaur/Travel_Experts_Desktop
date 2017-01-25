@@ -24,13 +24,18 @@ namespace TravelExpertsDb.Forms
             Close();
         }
 
+
+        //btnok is when u finalize the new Product you created
         private void btnOk_Click(object sender, EventArgs e)
         {
             if(Validator.IsPresent(txtNewProduct)) //if the txt has a value then continue on 
             {
                 string newProduct = txtNewProduct.Text;
+
+                // we are confirming if this product is in the database first before entering it in the DB
                 List<Product> allProducts = ProductDB.GetProducts();
-                if(ConfirmDuplicateProduct(newProduct, allProducts)){
+                if(ConfirmDuplicateProduct(newProduct, allProducts))
+                {
                     ProductDB.AddNewProduct(newProduct); //enter into the database
              
                     // for each item in the current suppliers in this new product, we are going to add the supplier into the database
@@ -52,7 +57,7 @@ namespace TravelExpertsDb.Forms
 
 
 
-        //Confirming if the product is in the database or not
+        //METHOD FOR Confirming if the product is in the database or not
         private static bool ConfirmDuplicateProduct(string newProduct, List<Product> allProducts)
         {
 
@@ -100,7 +105,7 @@ namespace TravelExpertsDb.Forms
 
 
 
-        //removing ans item from the supplier
+        //removing and item from the supplier
         private void btnRemove_Click(object sender, EventArgs e)
         {
             foreach (ListViewItem item in lvCurrentSuppliers.SelectedItems)

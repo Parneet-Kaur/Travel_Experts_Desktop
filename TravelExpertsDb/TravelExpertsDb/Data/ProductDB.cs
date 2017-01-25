@@ -285,15 +285,15 @@ namespace TravelExpertsDb
         {
             SqlConnection connection = DataAccess.getConnection();
 
-            string selectStatement = "SELECT IDENT_CURRENT('Products') FROM Products";
+            string selectStatement = "SELECT IDENT_CURRENT('Products') FROM Products"; //grabbing the newest id created for the current product
 
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
-            int newProductId = 0;
+            int newProductId = 0; //initialize the value for newproductid here
 
             try
             {
                 connection.Open();
-                newProductId = Convert.ToInt32(selectCommand.ExecuteScalar());
+                newProductId = Convert.ToInt32(selectCommand.ExecuteScalar()); //grabbing the newly created productID and assigning it to newProductId
 
 
             }
@@ -343,7 +343,7 @@ namespace TravelExpertsDb
 
             SqlConnection connection = DataAccess.getConnection();
 
-            string selectMaxStatement = "Select Max(SupplierId) from Suppliers";
+            string selectMaxStatement = "Select Max(SupplierId) from Suppliers"; //selecting the maximum value for supplierid
 
             SqlCommand maxsupplieridCommand = new SqlCommand(selectMaxStatement, connection);
 
