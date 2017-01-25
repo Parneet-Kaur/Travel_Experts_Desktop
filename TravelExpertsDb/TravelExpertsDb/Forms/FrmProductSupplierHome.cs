@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace TravelExpertsDb.Forms
 {
-  // Callias Nguyen
-  // Abel Surace
-  // Landing page for the whole product suppliers.....
-  // opening forms via this page
+    // Callias Nguyen
+    // Abel Surace
+    // Landing page for the whole product suppliers.....
+    // opening forms via this page
 
     public partial class FrmProductSupplierHomecs : MaterialForm
     {
@@ -31,10 +31,10 @@ namespace TravelExpertsDb.Forms
         {
             FrmNewSupplier newSupplierForm = new FrmNewSupplier();
             DialogResult result = newSupplierForm.ShowDialog();
-            if(result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 //Refresh the datasource
-                lballSuppliers.DataSource = SupplierDB.GetAllSuppliers();
+                RefreshSuppliers();
 
             }
         }
@@ -43,7 +43,9 @@ namespace TravelExpertsDb.Forms
         {
             //Once the form loads we want to load the products that we have
             cboProduct.DataSource = ProductDB.GetProducts();
-            lballSuppliers.DataSource = SupplierDB.GetAllSuppliers();
+
+            //We thought about grabbing all suppliers.. but its better to have this with each product
+            //lballSuppliers.DataSource = SupplierDB.GetAllSuppliers();
 
         }
 
@@ -51,13 +53,13 @@ namespace TravelExpertsDb.Forms
         //opening a new product form
         private void btnNewProduct_Click(object sender, EventArgs e)
         {
-            FrmNewProduct newProductForm = new FrmNewProduct();         
+            FrmNewProduct newProductForm = new FrmNewProduct();
             DialogResult result = newProductForm.ShowDialog();
-            if(result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
-               //refreshing the product datasource
+                //refreshing the product datasource
                 cboProduct.DataSource = ProductDB.GetProducts();
-        
+
             }
 
         }
@@ -71,11 +73,11 @@ namespace TravelExpertsDb.Forms
             if (result == DialogResult.OK)
             {
                 //refresh the datasource for products and supplier
-                Product selectedProduct = (Product)cboProduct.SelectedValue;
-                lballSuppliers.DataSource = ProductDB.GetProductSuppliers(selectedProduct);
                 cboProduct.DataSource = ProductDB.GetProducts();
+                RefreshSuppliers();
+             
 
-               
+
             }
         }
 
@@ -89,28 +91,45 @@ namespace TravelExpertsDb.Forms
             DialogResult result = editSupplier.ShowDialog();
             if (result == DialogResult.OK)
             {
-               //update supplier
-                lballSuppliers.DataSource = SupplierDB.GetAllSuppliers();
+                //update supplier
+                RefreshSuppliers();
             }
         }
 
         // editing product 
         private void btnEditProduct_Click(object sender, EventArgs e)
         {
-            
+
             FrmEditProduct editProduct = new FrmEditProduct();
-            editProduct.productIndex = (int) cboProduct.SelectedIndex ;
+            editProduct.productIndex = (int)cboProduct.SelectedIndex;
             DialogResult result = editProduct.ShowDialog();
-            if(result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 cboProduct.DataSource = ProductDB.GetProducts();
+                RefreshSuppliers();
             }
         }
 
-
+        //when the form closes it goes back to the landing page
         private void FrmProductSupplierHomecs_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult = DialogResult.OK;
+        }
+
+        private void cboProduct_SelectedValueChanged(object sender, EventArgs e)
+        {
+
+            //refresh the suppliers for that selected product
+            RefreshSuppliers();
+        }
+
+
+        //Method to always refreshing the suppliers in the database
+        private void RefreshSuppliers()
+        {
+            Product chosenProduct = (Product)cboProduct.SelectedItem;
+            lballSuppliers.DataSource = ProductDB.GetProductSuppliers(chosenProduct);
+
         }
     }
 }

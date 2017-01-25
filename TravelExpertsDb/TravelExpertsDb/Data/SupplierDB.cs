@@ -12,6 +12,9 @@ namespace TravelExpertsDb
     public static class SupplierDB
     {
         //Callias Nguyen
+
+
+            //Adding a new supplier from the database
         public static bool AddNewSupplier(string newSupplier)//method to add new supplier into the database
                                                              //Returns false if it does not work
         {
@@ -152,6 +155,7 @@ namespace TravelExpertsDb
         ///
         /// SEPARATING METHODS
 
+            //updating the supplier name with the old supplier
 
         public static bool UpdateSupplier(ProductSupplier oldSupplier, string newSupplierName)
         {
@@ -202,6 +206,11 @@ namespace TravelExpertsDb
         ///
         ///
         /// SEPARATING METHODS
+        /// 
+
+            //grabbing information on the packages that are attached to a current productsupplier.. this way you can
+            //show the user what packages is attached and must be deleted (AS IT IS A FOREIGN KEY) before you can remove a supplier 
+            //from packages 
 
         public static List<string> AttachedPackagesFromSuppliers(ProductSupplier currentSupplier)
         {

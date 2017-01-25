@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TravelExpertsDb
-{
+{//Callias Nguyen
+    // January 25, 2017
+// ProductDB for refreshing/adding/editing anything to do with products
     public static class ProductDB
     {
 
@@ -134,6 +136,8 @@ namespace TravelExpertsDb
             //NEED TO FIX THIS SELECT STATEMENT
             //
             //
+
+            //this is how we are going to grab suppliers that are moved out of the product
             string selectStatement = @"SELECT distinct s.SupplierId, SupName FROM Suppliers s
                                               WHERE s.supplierId NOT IN(select SupplierId from Products_Suppliers
                                                  WHERE ProductId = @ProductId)
@@ -176,6 +180,7 @@ namespace TravelExpertsDb
             return productSuppliers;
         }
 
+        //removing a product supplier... given that the package and bookings are removed from that respective productsupplier
         public static void RemoveProductsSupplier(Product product, ProductSupplier supplier)
         {
 
@@ -330,10 +335,11 @@ namespace TravelExpertsDb
 
         }
 
-        //NEW CODE TO ADD TO THE FINAL...///////////////////////////////////////////////
+    //updating a NEW supplier with an added products
         public static bool UpdateNewProductsWithaSupplier(int productId)
         {
             int currentHighestSupplierId = 0; //set the current supplierid to 0
+            //since the supplierid is not incremented this is how we are going to grab the supplierID that has been inserted
 
             SqlConnection connection = DataAccess.getConnection();
 
@@ -362,7 +368,8 @@ namespace TravelExpertsDb
             //the highest number is going to be the newSupplierid.....
 
 
-            string insertStatement = "INSERT INTO Products_Suppliers Values (@ProductId, @SupplierId)";
+            string insertStatement = "INSERT INTO Products_Suppliers Values (@ProductId, @SupplierId)"; //Now we have all the information, this is how we are going to insert information
+            //into the database
 
             SqlCommand insertCommand = new SqlCommand(insertStatement, connection);
 
