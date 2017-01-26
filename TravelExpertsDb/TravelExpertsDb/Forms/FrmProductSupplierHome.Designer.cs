@@ -47,6 +47,7 @@
             this.cboProduct.Name = "cboProduct";
             this.cboProduct.Size = new System.Drawing.Size(154, 21);
             this.cboProduct.TabIndex = 0;
+            this.cboProduct.SelectedValueChanged += new System.EventHandler(this.cboProduct_SelectedValueChanged);
             // 
             // lblProduct
             // 

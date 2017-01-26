@@ -43,7 +43,7 @@ namespace TravelExpertsDb.Forms
       
             if (result == DialogResult.OK)
             {
-                this.Show();
+                this.Show(); // hiding the landing page until user closes the other pages
 
             }
         }
@@ -56,7 +56,7 @@ namespace TravelExpertsDb.Forms
             DialogResult result = productSupplierHome.ShowDialog();
             if (result == DialogResult.OK)
             {
-                this.Show();
+                this.Show();// hiding the landing page until user closes the other pages
 
             }
 
@@ -67,7 +67,7 @@ namespace TravelExpertsDb.Forms
 
         private void FrmLandingPage_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            Application.Exit(); //once we close the landing page... we will exit the application
         }
     }
 }
