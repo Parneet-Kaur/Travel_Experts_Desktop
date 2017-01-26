@@ -46,8 +46,10 @@ namespace TravelExpertsDb
             dtpStartDate.Value = package.PkgStartDate;
             dtpEndDate.Value = package.PkgEndDate;
             rtbPkgDesc.Text = package.PkgDesc;
-            txtPkgBasePrice.Text = package.PkgBasePrice.ToString();
-            txtAgencyCommision.Text = package.PkgAgencyCommission.ToString();
+            String CostConv = (string.Format(("{0:C}"), package.PkgBasePrice));
+            txtPkgBasePrice.Text = CostConv;
+            CostConv = (string.Format(("{0:C}"), package.PkgAgencyCommission));
+            txtAgencyCommision.Text = CostConv;
 
             //******************get dates from db********
             if (package.PkgStartDate == DateTime.MinValue)

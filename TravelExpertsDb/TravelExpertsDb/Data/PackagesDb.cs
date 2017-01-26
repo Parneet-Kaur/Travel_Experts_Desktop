@@ -55,12 +55,13 @@ namespace TravelExpertsDb
                 {
                     package.PkgDesc = "";
                 }
-
-                package.PkgBasePrice = Convert.ToDecimal(reader["pkgBasePrice"].ToString());
+                decimal money = Math.Round(Convert.ToDecimal(reader["pkgBasePrice"].ToString()));
+                package.PkgBasePrice = money;
                 flagOD = (reader["PkgAgencyCommission"] != System.DBNull.Value);
                 if (flagOD)
                 {
-                    package.PkgAgencyCommission = Convert.ToDecimal(reader["PkgAgencyCommission"].ToString());
+                    decimal commision = Math.Round(Convert.ToDecimal(reader["PkgAgencyCommission"].ToString()));
+                    package.PkgAgencyCommission = commision;
                 }
                 else
                 {

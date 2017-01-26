@@ -56,6 +56,8 @@ namespace TravelExpertsDb
         {
             //on the load we are refreshing the datasource
             dtgPackages.DataSource = PackagesDb.GetAllPackages();
+            this.dtgPackages.Columns["PkgBasePrice"].DefaultCellStyle.Format = "c";
+            this.dtgPackages.Columns["PkgAgencyCommission"].DefaultCellStyle.Format = "c";
         }
 
         private void DefaultPackages_FormClosing(object sender, FormClosingEventArgs e)
